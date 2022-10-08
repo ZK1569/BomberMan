@@ -3,4 +3,4 @@ project(BomberMan C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(BomberMan main.c)
+add_executable(BomberMan Code/main.c)
