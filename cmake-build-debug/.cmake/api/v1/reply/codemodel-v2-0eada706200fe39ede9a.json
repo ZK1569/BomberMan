@@ -6,7 +6,7 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.23"
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "BomberMan::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-BomberMan-Debug-a97412aeb9f7bde927e7.json",
+					"jsonFile" : "target-BomberMan-Debug-31b9616fe6ae854e44e4.json",
 					"name" : "BomberMan",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/cristianursu/CLionProjects/BomberMan/cmake-build-debug",
-		"source" : "/Users/cristianursu/CLionProjects/BomberMan"
+		"build" : "C:/Users/CNM-CUR/CLionProjects/BomberMan/cmake-build-debug",
+		"source" : "C:/Users/CNM-CUR/CLionProjects/BomberMan"
 	},
 	"version" : 
 	{

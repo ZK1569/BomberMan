@@ -7,7 +7,8 @@
 #ifndef BOMBERMAN_SHOW_H
 #define BOMBERMAN_SHOW_H
 
+void show(Map map, short type);
+
 #endif //BOMBERMAN_SHOW_H
 
 
-void show(Map map, short type);

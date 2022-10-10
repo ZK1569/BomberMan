@@ -10,16 +10,17 @@ int main() {
     Map map = newMap(15, 7);
     createBorderMap(map);
 
-    Player testPlayer = newPlayer(1, 1, 1, &map);
+    Player testPlayer = newPlayer(10, 3, 1, &map);
 
 
-//    map.map[5][7] = 'm';
-//    map.map[3][7] = 'X';
-//
-//    map.map[2][2] = 'm';
+    map.map[4][7] = 'm';
+    map.map[2][7] = 'X';
+
+    map.map[2][2] = 'm';
 
 
     show(map, 1);
+
 
 
     // The game
@@ -27,7 +28,8 @@ int main() {
     int valid = 1;
     while (valid){
         printf("testPlayer : ");
-        scanf("%s", &direction);
+        scanf(" %c", &direction);
+        getchar();
         valid = move(direction, &testPlayer, &map);
         show(map, 1);
     }

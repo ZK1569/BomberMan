@@ -19,16 +19,16 @@ void show(Map map, short type){
             }else{
                 switch (map.map[i][y]) {
                     case 'X':
-                        printf("█|");
+                        printf("X|");
                         break;
                     case '0':
                         printf(" |");
                         break;
                     case 1:
-                        printf("♛|");
+                        printf("U|");
                         break;
                     case 'm':
-                        printf("░|");
+                        printf("n|");
                         break;
                 }
             }
