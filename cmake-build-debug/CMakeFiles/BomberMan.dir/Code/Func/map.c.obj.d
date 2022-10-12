@@ -1,7 +1,7 @@
 CMakeFiles/BomberMan.dir/Code/Func/map.c.obj: \
- C:\Users\CNM-CUR\CLionProjects\BomberMan\Code\Func\map.c \
- C:/Users/CNM-CUR/CLionProjects/BomberMan/Code/Header/map.h \
- C:/Users/CNM-CUR/CLionProjects/BomberMan/Code/Header/Structure.h \
+ C:\Users\33695\CLionProjects\BomberMan\Code\Func\map.c \
+ C:/Users/33695/CLionProjects/BomberMan/Code/Header/map.h \
+ C:/Users/33695/CLionProjects/BomberMan/Code/Header/Structure.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/x86_64-w64-mingw32/include/stdio.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/x86_64-w64-mingw32/include/corecrt_stdio_config.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/x86_64-w64-mingw32/include/corecrt.h \
@@ -23,4 +23,4 @@ CMakeFiles/BomberMan.dir/Code/Func/map.c.obj: \
  C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/x86_64-w64-mingw32/include/malloc.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/mm_malloc.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/x86_64-w64-mingw32/include/errno.h \
- C:/Users/CNM-CUR/CLionProjects/BomberMan/Code/Header/Structure.h
+ C:/Users/33695/CLionProjects/BomberMan/Code/Header/Structure.h

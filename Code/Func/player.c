@@ -54,7 +54,7 @@ int move(char direction, Player *player, Map *map){
                 player->nbrBomb--;
 
             }
-            else (player->myBomb[i].x != 0 || player->myBomb[i].y != 0){ // Pour les bombes qu'il a mais qui sont sur la map et pas en reserve
+            if ((player->myBomb[i].x != 0) || (player->myBomb[i].y != 0)){ // Pour les bombes qu'il a mais qui sont sur la map et pas en reserve
                 player->myBomb[i].life--; // Enleve une vie a la bombe
             }
         }
