@@ -14,7 +14,16 @@ typedef struct {
 typedef struct {
     int x;
     int y;
+    int life;
+}Bomb;
+
+typedef struct {
+    int x;
+    int y;
     char show;
+    char back;
+    int nbrBomb;
+    Bomb *myBomb;
 }Player;
 
 #endif //BOMBERMAN_STRUCTURE_H

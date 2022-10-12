@@ -30,6 +30,12 @@ void show(Map map, short type){
                     case 'm':
                         printf("n|");
                         break;
+                    case 'q':
+                        printf("Q|");
+                        break;
+                    case '*':
+                        printf("*|");
+                        break;
                 }
             }
         }
