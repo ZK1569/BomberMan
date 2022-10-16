@@ -12,7 +12,7 @@ char chooseGameMode() {
          "--------------------------------\n");
 
   do {
-    scanf("%c", &choice);
+    scanf("%s", &choice);
 
     switch (choice) {
       case '1':
@@ -20,6 +20,8 @@ char chooseGameMode() {
         break;
       case '2':
       case '3':
+        printf("Mode indisponible. Veuillez entrer un des chiffres disponibles.\n");
+        break;
       default:
         printf("Erreur ! Veuillez entrer un des chiffres proposés.\n");
         break;
