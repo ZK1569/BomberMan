@@ -18,24 +18,24 @@ void show(Map map, short type){
                 printf("%c ", map.map[i][y]);
             }else{
                 switch (map.map[i][y]) {
-                    case 'X':
-                        printf("X|");
-                        break;
-                    case '0':
-                        printf(" |");
-                        break;
-                    case 1:
-                        printf("U|");
-                        break;
-                    case 'm':
-                        printf("n|");
-                        break;
-                    case 'q':
-                        printf("Q|");
-                        break;
-                    case '*':
-                        printf("*|");
-                        break;
+                  case 'X':
+                    printf("X|");
+                    break;
+                  case '0':
+                    printf(" |");
+                    break;
+                  case 1:
+                    printf("U|");
+                    break;
+                  case 'm':
+                    printf("n|");
+                    break;
+                  case 'q':
+                    printf("Q|");
+                    break;
+                  case '*':
+                    printf("*|");
+                    break;
                 }
             }
         }

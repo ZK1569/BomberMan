@@ -1,11 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "Header/Structure.h"
+#include "Header/config.h"
 #include "Header/map.h"
-#include "Header/show.h"
 #include "Header/player.h"
+#include "Header/show.h"
 
 int main() {
+    Config *config = malloc(sizeof(Config));
+    int isConfigLoaded = getConfig(config, "app.config");
+
+    if (!isConfigLoaded) {
+      printf("Invalid config file!");
+      return 1;
+    }
 
     Map map = newMap(15, 7);
     createBorderMap(map);
