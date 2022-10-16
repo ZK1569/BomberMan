@@ -4,8 +4,11 @@
 #include "Header/map.h"
 #include "Header/show.h"
 #include "Header/player.h"
+#include "Header/chooseGameMode.h"
 
 int main() {
+
+    char choice = chooseGameMode();
 
     Map map = newMap(15, 7);
     createBorderMap(map);
