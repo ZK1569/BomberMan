@@ -8,7 +8,7 @@
 #include "../Header/show.h"
 #include "../Header/map.h"
 
-// ░▒▓█
+// ░▒▓█ ♛
 
 void show(Map map, short type){
     // Print test: Show map
@@ -19,16 +19,16 @@ void show(Map map, short type){
             }else{
                 switch (map.map[i][y]) {
                     case 'X':
-                        printf("X|");
+                        printf("█|");
                         break;
                     case '0':
                         printf(" |");
                         break;
                     case 1:
-                        printf("U|");
+                        printf("♛|");
                         break;
                     case 'm':
-                        printf("n|");
+                        printf("░|");
                         break;
                     case 'q':
                         printf("Q|");
@@ -36,6 +36,11 @@ void show(Map map, short type){
                     case '*':
                         printf("*|");
                         break;
+                    case '#':
+                        printf("#|");
+                        break;
+                    default:
+                        printf("?|");
                 }
             }
         }

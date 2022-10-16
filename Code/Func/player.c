@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include "../Header/player.h"
 #include "../Header/Structure.h"
+#include "../Header/Bomb.h"
 
 int isDirectionPossible(int x, int y, Map *map){
     // Check if the next move is possible
@@ -36,25 +37,33 @@ Player newPlayer(int x, int y, char show, Map *map){
 }
 
 int move(char direction, Player *player, Map *map){
+
+    // Debug action
+    for (int i = 0; i < 3; ++i) {
+        printf("Bombe°%d possition= %d/%d vie= %d\n", i, player->myBomb[i].x, player->myBomb[i].y, player->myBomb[i].life);
+    }
+    printf("Nbr bombe= %d\n", player->nbrBomb);
+
+    // Mettre ici la fonction qui supprime les * et # de la map
+    explosionGone(map);
+
+
     // set the action of the player
     map->map[player->y][player->x] = player->back;
     if(player->back != '0'){
         player->back = '0';
     }
-    // Mettre ici l'inrementation pour les bombes
-    // Si x ou y != 0;
+
     if (player->nbrBomb != 0){ // If the player has at less a bomb
         for (int i = 0; i < 3; ++i) { //3 = nbr bomb (a mettre dans une variable)
-            if (player->myBomb[i].life == 0){
-                // print une + sur la map (function a faire)
-                // Supprime la bombe et la met dans la poche
-                player->myBomb->x = 0;
-                player->myBomb->y = 0;
-                // Eleve le nombre total de bomb qu'il a
+            if (player->myBomb[i].life == 0 && player->myBomb[i].x != 0 && player->myBomb[i].y != 0){
+                map->map[player->myBomb[i].y][player->myBomb[i].x] = '0';
+                explose(player->myBomb[i].x, player->myBomb[i].y, 2, map);
+                player->myBomb[i].x = 0;
+                player->myBomb[i].y = 0;
                 player->nbrBomb--;
-
             }
-            if ((player->myBomb[i].x != 0) || (player->myBomb[i].y != 0)){ // Pour les bombes qu'il a mais qui sont sur la map et pas en reserve
+            if ((player->myBomb[i].x != 0) && (player->myBomb[i].y != 0)){ // Pour les bombes qu'il a mais qui sont sur la map et pas en reserve
                 player->myBomb[i].life--; // Enleve une vie a la bombe
             }
         }
@@ -86,14 +95,19 @@ int move(char direction, Player *player, Map *map){
             break;
         case 'e':
             // Place a Bomb
-            // Ne pas mettre les bombes a l'index du nombre mais dans le 1er place touver x et y
-            // Si verifier qu'il en a pas trop placé
+
             if(player->nbrBomb < 3){ // 3 est le nombre de bombe ( a mettre dans un variable )
-                player->myBomb[player->nbrBomb].x = player->x;
-                player->myBomb[player->nbrBomb].y = player->y;
-                player->myBomb[player->nbrBomb].life = 3 + 1 ; // 3 est le nombre de tour avant que la bombe explose / Je sais pas pourquoi +1
+                for (int i = 0; i < 3; ++i) {
+                    if (player->myBomb[i].x == 0 || player->myBomb[i].y == 0){
+                        player->myBomb[i].x = player->x;
+                        player->myBomb[i].y = player->y;
+                        player->myBomb[i].life = 5; //5 a mettre dans une variable = nbr de tour avant quel explose
+                        player->nbrBomb++;
+                        break;
+                    }
+                }
+                player->back = 'q';
             }
-            player->back = 'q';
             break;
         default:
             printf("Please enter a good direction \n");

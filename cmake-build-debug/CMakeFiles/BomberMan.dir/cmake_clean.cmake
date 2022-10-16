@@ -1,16 +1,16 @@
 file(REMOVE_RECURSE
-  "BomberMan.exe"
-  "BomberMan.exe.manifest"
+  "BomberMan"
   "BomberMan.pdb"
-  "CMakeFiles/BomberMan.dir/Code/Func/map.c.obj"
-  "CMakeFiles/BomberMan.dir/Code/Func/map.c.obj.d"
-  "CMakeFiles/BomberMan.dir/Code/Func/player.c.obj"
-  "CMakeFiles/BomberMan.dir/Code/Func/player.c.obj.d"
-  "CMakeFiles/BomberMan.dir/Code/Func/show.c.obj"
-  "CMakeFiles/BomberMan.dir/Code/Func/show.c.obj.d"
-  "CMakeFiles/BomberMan.dir/Code/main.c.obj"
-  "CMakeFiles/BomberMan.dir/Code/main.c.obj.d"
-  "libBomberMan.dll.a"
+  "CMakeFiles/BomberMan.dir/Code/Func/Bomb.c.o"
+  "CMakeFiles/BomberMan.dir/Code/Func/Bomb.c.o.d"
+  "CMakeFiles/BomberMan.dir/Code/Func/map.c.o"
+  "CMakeFiles/BomberMan.dir/Code/Func/map.c.o.d"
+  "CMakeFiles/BomberMan.dir/Code/Func/player.c.o"
+  "CMakeFiles/BomberMan.dir/Code/Func/player.c.o.d"
+  "CMakeFiles/BomberMan.dir/Code/Func/show.c.o"
+  "CMakeFiles/BomberMan.dir/Code/Func/show.c.o.d"
+  "CMakeFiles/BomberMan.dir/Code/main.c.o"
+  "CMakeFiles/BomberMan.dir/Code/main.c.o.d"
 )
 
 # Per-language clean rules from dependency scanning.
