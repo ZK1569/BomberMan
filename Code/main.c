@@ -18,7 +18,7 @@ int main()
         return 1;
     }
 
-    Map map = newMap(15, 7);
+    Map map = newMap( config->rows, config->columns);
     createBorderMap(map);
 
     /*
@@ -40,7 +40,7 @@ int main()
     map.map[2][7] = 'X';
     map.map[2][2] = 'm';
 
-    show(map, 1);
+    show(map, 1, config);
 
     // The game
     char direction;
@@ -54,7 +54,7 @@ int main()
         scanf(" %c", &direction);
         getchar();
         valid = move(direction, currentPlayer, &map);
-        show(map, 1);
+        show(map, 1, config);
 
         playerTurn = (playerTurn + 1) % numberOfPlayer;
         currentPlayer = &players[playerTurn];

@@ -10,11 +10,12 @@ int getConfig(Config *config, char *configFile) {
   FILE *file = fopen(configFile, "r");
   if (file == NULL) {
     file = fopen(configFile, "w+");
-    char *configProperties = "ROWS=5\n"
-                             "COLUMNS=10\n"
+    char *configProperties = "ROWS=15\n"
+                             "COLUMNS=7\n"
                              "STRONG_WALL=⬜️\n"
                              "WEAK_WALL=🟫\n"
-                             "EMPTY_SPACE= \n"
+                             "DESTROYED_WALL=💥\n"
+                             "EMPTY_SPACE=◾️\n"
                              "\n"
                              "PLAYER_1=🙂\n"
                              "PLAYER_2=😛\n"
@@ -67,6 +68,7 @@ int getConfig(Config *config, char *configFile) {
 
     if (strcmp(key, "ROWS") == 0) {
       config->rows = atoi(value);
+      printf("ROWS: %d\n", config->rows);
     }
     else if (strcmp(key, "COLUMNS") == 0) {
       config->columns = atoi(value);
@@ -76,6 +78,9 @@ int getConfig(Config *config, char *configFile) {
     }
     else if (strcmp(key, "WEAK_WALL") == 0) {
       config->weakWall = value;
+    }
+    else if (strcmp(key, "DESTROYED_WALL") == 0) {
+      config->destroyedWall = value;
     }
     else if (strcmp(key, "EMPTY_SPACE") == 0) {
       config->emptySpace = value;
@@ -132,26 +137,6 @@ int getConfig(Config *config, char *configFile) {
       printf("something is not handled");
     }
   }
-
-//  printf("%s ", config->strongWall);
-//  printf("%s ", config->weakWall);
-//  printf("%s ", config->emptySpace);
-//  printf("%s ", config->player1);
-//  printf("%s ", config->player2);
-//  printf("%s ", config->player3);
-//  printf("%s ", config->player4);
-//  printf("%s ", config->bomb);
-//  printf("%s ", config->bombFire);
-//  printf("%s ", config->bombDown);
-//  printf("%s ", config->bombUp);
-//  printf("%s ", config->yellowFire);
-//  printf("%s ", config->blueFire);
-//  printf("%s ", config->redFire);
-//  printf("%s ", config->bombPass);
-//  printf("%s ", config->kick);
-//  printf("%s ", config->vest);
-//  printf("%s ", config->heart);
-//  printf("%s ", config->oneUp);
 
   fclose(file);
   return 1;
