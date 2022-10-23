@@ -56,10 +56,17 @@ RM = "C:\Program Files\JetBrains\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
+<<<<<<< HEAD
 CMAKE_SOURCE_DIR = C:\Users\33695\CLionProjects\BomberMan
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = C:\Users\33695\CLionProjects\BomberMan\cmake-build-debug
+=======
+CMAKE_SOURCE_DIR = C:\Users\CNM-CUR\CLionProjects\BomberMan
+
+# The top-level build directory on which CMake was run.
+CMAKE_BINARY_DIR = C:\Users\CNM-CUR\CLionProjects\BomberMan\cmake-build-debug
+>>>>>>> main
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -86,9 +93,15 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
+<<<<<<< HEAD
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\33695\CLionProjects\BomberMan\cmake-build-debug\CMakeFiles C:\Users\33695\CLionProjects\BomberMan\cmake-build-debug\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\33695\CLionProjects\BomberMan\cmake-build-debug\CMakeFiles 0
+=======
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\CNM-CUR\CLionProjects\BomberMan\cmake-build-debug\CMakeFiles C:\Users\CNM-CUR\CLionProjects\BomberMan\cmake-build-debug\\CMakeFiles\progress.marks
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\CNM-CUR\CLionProjects\BomberMan\cmake-build-debug\CMakeFiles 0
+>>>>>>> main
 .PHONY : all
 
 # The main clean target
@@ -128,6 +141,7 @@ BomberMan/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\BomberMan.dir\build.make CMakeFiles/BomberMan.dir/build
 .PHONY : BomberMan/fast
 
+<<<<<<< HEAD
 Code/Func/map.obj: Code/Func/map.c.obj
 .PHONY : Code/Func/map.obj
 
@@ -200,6 +214,8 @@ Code/Func/show.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\BomberMan.dir\build.make CMakeFiles/BomberMan.dir/Code/Func/show.c.s
 .PHONY : Code/Func/show.c.s
 
+=======
+>>>>>>> main
 Code/main.obj: Code/main.c.obj
 .PHONY : Code/main.obj
 
@@ -233,6 +249,7 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... BomberMan
+<<<<<<< HEAD
 	@echo ... Code/Func/map.obj
 	@echo ... Code/Func/map.i
 	@echo ... Code/Func/map.s
@@ -242,6 +259,8 @@ help:
 	@echo ... Code/Func/show.obj
 	@echo ... Code/Func/show.i
 	@echo ... Code/Func/show.s
+=======
+>>>>>>> main
 	@echo ... Code/main.obj
 	@echo ... Code/main.i
 	@echo ... Code/main.s

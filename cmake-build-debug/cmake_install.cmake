@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Install script for directory: C:/Users/33695/CLionProjects/BomberMan
+=======
+# Install script for directory: C:/Users/CNM-CUR/CLionProjects/BomberMan
+>>>>>>> main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +49,9 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
+<<<<<<< HEAD
 file(WRITE "C:/Users/33695/CLionProjects/BomberMan/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+=======
+file(WRITE "C:/Users/CNM-CUR/CLionProjects/BomberMan/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+>>>>>>> main
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

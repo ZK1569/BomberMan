@@ -922,6 +922,9 @@ FodyWeavers.xsd
 .gradle
 **/build/
 !src/**/build/
+/cmake-build-debug/**
+**/cmake-build-debug/
+
 
 # Ignore Gradle GUI config
 gradle-app.setting
