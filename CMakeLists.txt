@@ -3,4 +3,6 @@ project(BomberMan C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(BomberMan Code/main.c Code/Func/map.c Code/Header/map.h Code/Header/Structure.h Code/Func/show.c Code/Header/show.h Code/Func/player.c Code/Header/player.h)
+# add all executables from the Code directory
+file(GLOB_RECURSE SOURCES "Code/*.c")
+add_executable(BomberMan ${SOURCES})

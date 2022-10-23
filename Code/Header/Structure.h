@@ -5,25 +5,29 @@
 #ifndef BOMBERMAN_STRUCTURE_H
 #define BOMBERMAN_STRUCTURE_H
 
-typedef struct {
+typedef struct
+{
     int x;
     int y;
     char **map;
-}Map;
+} Map;
 
-typedef struct {
+typedef struct
+{
     int x;
     int y;
     int life;
-}Bomb;
+} Bomb;
 
-typedef struct {
+typedef struct
+{
     int x;
     int y;
     char show;
     char back;
+    char name[20];
     int nbrBomb;
     Bomb *myBomb;
-}Player;
+} Player;
 
-#endif //BOMBERMAN_STRUCTURE_H
+#endif // BOMBERMAN_STRUCTURE_H

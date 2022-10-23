@@ -7,8 +7,8 @@
 
 #include "Structure.h"
 
-Player newPlayer(int x, int y, char show, Map *map);
+Player newPlayer(char *name, int x, int y, char show, Map *map);
 
 int move(char direction, Player *player, Map *map);
 
-#endif //BOMBERMAN_PLAYER_H
+#endif // BOMBERMAN_PLAYER_H
