@@ -13,6 +13,8 @@ int main() {
     Player testPlayer = newPlayer(10, 3, 1, &map);
 
 
+
+
     map.map[4][7] = 'm';
     map.map[2][7] = 'X';
 

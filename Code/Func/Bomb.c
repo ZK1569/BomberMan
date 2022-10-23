@@ -21,7 +21,6 @@ void explose(int x, int y, int sizeExposion, Map *map){
 
     for (int i = 1; i <= sizeExposion; ++i) {
         // Up
-        printf("%c %d\n",map->map[y-i][x], i);
         if (map->map[y-i][x] != 'X'){
             map->map[y-i][x] = whatToPut(x, y-i, map);
         }else{
