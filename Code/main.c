@@ -37,7 +37,7 @@ int main()
         break;
     }
 
-    Map map = newMap(15, 7);
+    Map map = newMap( config->rows, config->columns);
     createBorderMap(map);
 
     /*
