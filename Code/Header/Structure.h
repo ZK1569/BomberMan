@@ -7,6 +7,36 @@
 
 typedef struct
 {
+    // map
+    int rows;
+    int columns;
+    char *strongWall;
+    char *weakWall;
+    char *emptySpace;
+
+    // players
+    char *player1;
+    char *player2;
+    char *player3;
+    char *player4;
+    char *bomb;
+    char *bombFire;
+
+    // random items
+    char *bombDown;
+    char *bombUp;
+    char *yellowFire;
+    char *blueFire;
+    char *redFire;
+    char *bombPass;
+    char *kick;
+    char *vest;
+    char *heart;
+    char *oneUp;
+} Config;
+
+typedef struct
+{
     int x;
     int y;
     char **map;
