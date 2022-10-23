@@ -36,7 +36,10 @@ int getConfig(Config *config, char *configFile) {
                              "ONE_UP=🆙";
 
     fprintf(file, "%s", configProperties);
+    rewind(file);
   }
+
+  if (file != NULL) file = fopen(configFile, "r");
 
   char line[256];
   char *key ;
