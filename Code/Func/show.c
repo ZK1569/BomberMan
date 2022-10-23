@@ -10,7 +10,7 @@
 
 // ░▒▓█
 
-void show(Map map, short type){
+void show(Map map, short type, Config *config){
     // Print test: Show map
     for (int i = 0; i < map.y; i++) {
         for (int y = 0; y < map.x; y++) {
@@ -19,23 +19,28 @@ void show(Map map, short type){
             }else{
                 switch (map.map[i][y]) {
                   case 'X':
-                    printf("X|");
+                    printf("%s|", config->strongWall);
                     break;
                   case '0':
-                    printf(" |");
+                    printf("%s|", config->emptySpace);
                     break;
                   case 1:
-                    printf("U|");
+                    printf("%s|", config->player1);
                     break;
                   case 'm':
-                    printf("n|");
+                    printf("%s|", config->weakWall);
                     break;
                   case 'q':
-                    printf("Q|");
+                    printf("%s|", config->bomb);
                     break;
                   case '*':
-                    printf("*|");
+                    printf("%s|", config->bombFire);
                     break;
+                  case '#':
+                    printf("%s|", config->destroyedWall);
+                    break;
+                  default:
+                    printf("%s|", config->emptySpace);
                 }
             }
         }

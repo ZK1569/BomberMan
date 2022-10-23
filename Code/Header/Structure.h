@@ -12,6 +12,7 @@ typedef struct
     int columns;
     char *strongWall;
     char *weakWall;
+    char *destroyedWall;
     char *emptySpace;
 
     // players

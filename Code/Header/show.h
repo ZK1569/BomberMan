@@ -7,7 +7,7 @@
 #ifndef BOMBERMAN_SHOW_H
 #define BOMBERMAN_SHOW_H
 
-void show(Map map, short type);
+void show(Map map, short type, Config *config);
 
 #endif //BOMBERMAN_SHOW_H
 
