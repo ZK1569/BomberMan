@@ -1,9 +1,0 @@
-<<<<<<< HEAD
-C:/Users/33695/CLionProjects/BomberMan/cmake-build-debug/CMakeFiles/BomberMan.dir
-C:/Users/33695/CLionProjects/BomberMan/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/33695/CLionProjects/BomberMan/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-=======
-C:/Users/CNM-CUR/CLionProjects/BomberMan/cmake-build-debug/CMakeFiles/BomberMan.dir
-C:/Users/CNM-CUR/CLionProjects/BomberMan/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/CNM-CUR/CLionProjects/BomberMan/cmake-build-debug/CMakeFiles/rebuild_cache.dir
->>>>>>> main
