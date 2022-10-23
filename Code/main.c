@@ -6,6 +6,7 @@
 #include "Header/map.h"
 #include "Header/player.h"
 #include "Header/show.h"
+#include "Header/gameMode.h"
 
 int main()
 {
@@ -16,6 +17,24 @@ int main()
     {
         printf("Invalid config file!");
         return 1;
+    }
+
+    int chosenMode = setGameMode();
+    switch (chosenMode) {
+      case START:
+        // TODO: call the function for playing against CPU
+        break;
+      case START_SERVER:
+        // TODO: call the function for starting a local server
+        break;
+      case JOIN_SERVER:
+        // TODO: call the function for joining a server
+        break;
+      default:
+        // TODO:
+        //  either call the same function as "START" case.
+        //  or EXIT.
+        break;
     }
 
     Map map = newMap( config->rows, config->columns);
