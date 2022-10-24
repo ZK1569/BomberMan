@@ -120,3 +120,28 @@ int move(char direction, Player *player, Map *map)
     map->map[player->y][player->x] = player->show;
     return 1;
 }
+
+char *setCurrentPlayerCharacter(int playerTurn, Config *config){
+  char *currentPlayerCharacter;
+
+  switch (playerTurn) {
+    case 0:
+      currentPlayerCharacter = config->player1;
+      break;
+    case 1:
+      currentPlayerCharacter = config->player2;
+      break;
+    case 2:
+      currentPlayerCharacter = config->player3;
+      break;
+    case 3:
+      currentPlayerCharacter = config->player4;
+      break;
+    default:
+      printf("Tour à gérer...\n");
+      currentPlayerCharacter = "❓";
+      break;
+  }
+
+  return currentPlayerCharacter;
+}

@@ -15,7 +15,7 @@ int getConfig(Config *config, char *configFile) {
                              "STRONG_WALL=⬜️\n"
                              "WEAK_WALL=🟫\n"
                              "DESTROYED_WALL=💥\n"
-                             "EMPTY_SPACE=◾️\n"
+                             "EMPTY_SPACE=⬛\n"
                              "\n"
                              "PLAYER_1=🙂\n"
                              "PLAYER_2=😛\n"
