@@ -10,5 +10,6 @@
 Player newPlayer(char *name, int x, int y, char show, Map *map);
 
 int move(char direction, Player *player, Map *map);
+char *setCurrentPlayerCharacter(int playerTurn, Config *config);
 
 #endif // BOMBERMAN_PLAYER_H

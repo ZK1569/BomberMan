@@ -46,8 +46,8 @@ int main()
      *   keep count of the number of players
      */
     Player testPlayer = newPlayer("Abdou", 10, 3, 1, &map);
-    Player secondPlayer = newPlayer("Cristian", 11, 4, 1, &map);
-    Player thirdPlayer = newPlayer("Loic", 9, 5, 1, &map);
+    Player secondPlayer = newPlayer("Cristian", 11, 4, 2, &map);
+    Player thirdPlayer = newPlayer("Loic", 9, 5, 3, &map);
     Player players[3] = {testPlayer, secondPlayer, thirdPlayer};
 
     Player *currentPlayer = &testPlayer;
@@ -68,8 +68,8 @@ int main()
     // every loop iteration we change the current player
     while (valid)
     {
-
-        printf("%s : ", currentPlayer->name);
+        char *currentPlayerCharacter = setCurrentPlayerCharacter(playerTurn, config);
+        printf("%s %s : ", currentPlayerCharacter, currentPlayer->name);
         scanf(" %c", &direction);
         getchar();
         valid = move(direction, currentPlayer, &map);
