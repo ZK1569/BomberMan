@@ -72,7 +72,7 @@ int main()
         printf("%s %s : ", currentPlayerCharacter, currentPlayer->name);
         scanf(" %c", &direction);
         getchar();
-        valid = move(direction, currentPlayer, &map);
+        valid = move(direction, currentPlayer, &map, players);
         show(map, 1, config);
 
         playerTurn = (playerTurn + 1) % numberOfPlayer;
