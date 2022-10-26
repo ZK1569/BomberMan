@@ -1,6 +1,6 @@
 # Projet casse briques (3 AL2)
 
-- [Instructions pour démarrer](#Instructions-pour-demarrer)
+- [Instructions pour démarrer](#instructions-pour-demarrer)
 - [Informations du jeu](#informations-du-jeu)
   - [Touches](#touches)
   - [Décors](#decors)
