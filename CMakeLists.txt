@@ -5,4 +5,4 @@ set(CMAKE_C_STANDARD 99)
 
 # add all executables from the Code directory
 file(GLOB_RECURSE SOURCES "Code/*.c")
-add_executable(BomberMan ${SOURCES})
+add_executable(BomberMan ${SOURCES} Code/Func/Bomb.c Code/Header/Bomb.h)

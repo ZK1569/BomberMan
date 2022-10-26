@@ -53,6 +53,8 @@ int main()
 
     Player *currentPlayer = &testPlayer;
 
+
+
     int numberOfPlayer = 3;
     int playerTurn = 0;
 
@@ -66,10 +68,12 @@ int main()
     char direction;
     int valid = 1;
     int isInputAllowed = 0;
+    char lastPlayer;
 
     // every loop iteration we change the current player
     while (valid)
     {
+        lastPlayer = currentPlayer->show;
         char *currentPlayerCharacter = setCurrentPlayerCharacter(playerTurn, config);
         printf("%s %s : ", currentPlayerCharacter, currentPlayer->name);
 
@@ -83,12 +87,20 @@ int main()
           isInputAllowed = isMovementValid(direction) || isActionValid(direction);
         };
 
-        valid = move(direction, currentPlayer, &map);
+        valid = move(direction, currentPlayer, &map, players);
         show(map, 1, config);
 
-        playerTurn = (playerTurn + 1) % numberOfPlayer;
-        currentPlayer = &players[playerTurn];
+        do {
+            playerTurn = (playerTurn + 1) % numberOfPlayer;
+            currentPlayer = &players[playerTurn];
+        }while(!currentPlayer->alive);
+
+        if (lastPlayer == currentPlayer->show){
+            valid=0;
+        }
     }
+
+    printf("C'est la fin de la game.");
 
     // Free the map
     for (int i = 0; i < map.y; ++i)
@@ -96,6 +108,5 @@ int main()
         free(map.map[i]);
     }
     free(map.map);
-
     return 0;
 }
