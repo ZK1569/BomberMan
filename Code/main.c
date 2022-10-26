@@ -7,6 +7,7 @@
 #include "Header/player.h"
 #include "Header/show.h"
 #include "Header/gameMode.h"
+#include "Header/utils.h"
 
 int main()
 {
@@ -64,14 +65,24 @@ int main()
     // The game
     char direction;
     int valid = 1;
+    int isInputAllowed = 0;
 
     // every loop iteration we change the current player
     while (valid)
     {
         char *currentPlayerCharacter = setCurrentPlayerCharacter(playerTurn, config);
         printf("%s %s : ", currentPlayerCharacter, currentPlayer->name);
-        scanf(" %c", &direction);
-        getchar();
+
+        direction = getPlayerInput();
+        isInputAllowed = isMovementValid(direction) || isActionValid(direction);
+
+        while (!isInputAllowed) {
+          printf("Action invalide. %s %s : ", currentPlayerCharacter, currentPlayer->name);
+
+          direction = getPlayerInput();
+          isInputAllowed = isMovementValid(direction) || isActionValid(direction);
+        };
+
         valid = move(direction, currentPlayer, &map);
         show(map, 1, config);
 

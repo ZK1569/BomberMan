@@ -72,36 +72,31 @@ int move(char direction, Player *player, Map *map)
     }
     switch (direction)
     {
-    case 'z':
-        // Go Up
+    case MOVE_UP:
         if (isDirectionPossible(player->x, player->y - 1, map))
         {
             player->y -= 1;
         }
         break;
-    case 'd':
-        // Go right
+    case MOVE_RIGHT:
         if (isDirectionPossible(player->x + 1, player->y, map))
         {
             player->x += 1;
         }
         break;
-    case 's':
-        // Go Down
+    case MOVE_DOWN:
         if (isDirectionPossible(player->x, player->y + 1, map))
         {
             player->y += 1;
         }
         break;
-    case 'q':
-        // Go left
+    case MOVE_LEFT:
         if (isDirectionPossible(player->x - 1, player->y, map))
         {
             player->x -= 1;
         }
         break;
-    case 'e':
-        // Place a Bomb
+    case ACTION_PLACE_BOMB:
         // Ne pas mettre les bombes a l'index du nombre mais dans le 1er place touver x et y
         // Si verifier qu'il en a pas trop placé
         if (player->nbrBomb < 3)
@@ -110,7 +105,7 @@ int move(char direction, Player *player, Map *map)
             player->myBomb[player->nbrBomb].y = player->y;
             player->myBomb[player->nbrBomb].life = 3 + 1; // 3 est le nombre de tour avant que la bombe explose / Je sais pas pourquoi +1
         }
-        player->back = 'q';
+        player->back = MOVE_LEFT;
         break;
     default:
         printf("Please enter a good direction \n");

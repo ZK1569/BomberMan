@@ -3,4 +3,7 @@
 
 int getUserInput();
 
+int isMovementValid(char character);
+int isActionValid(char character);
+
 #endif
