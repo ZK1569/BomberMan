@@ -9,10 +9,25 @@
 #include "../Header/Structure.h"
 #include "../Header/Bomb.h"
 
+int killPlayer(int x, int y, Player *allPlayers){
+    for (int i = 0; i < 3; ++i) { // TODO: changer le 3 en nombre de jouer
+        if (allPlayers[i].x == x && allPlayers[i].y == y && allPlayers[i].alive){
+            allPlayers[i].alive = 0;
+        }
+    }
+}
+
 int isDirectionPossible(int x, int y, Map *map)
 {
     // Check if the next move is possible
-    if ((map->map[y][x] != 'X') && (map->map[y][x] != 'm') && (map->map[y][x] != 'q'))
+    if ((map->map[y][x] != 'X') &&
+        (map->map[y][x] != 'm') &&
+        (map->map[y][x] != 'q') &&
+        (map->map[y][x] != 1) &&
+        (map->map[y][x] != 2) &&
+        (map->map[y][x] != 3) &&
+        (map->map[y][x] != 4)
+    )
     {
         return 1;
     }
@@ -36,6 +51,7 @@ Player newPlayer(char *name, int x, int y, char show, Map *map)
         new.myBomb[i].y = 0;
         new.myBomb[i].life = 0;
     }
+    new.alive = 1;
 
     map->map[y][x] = show;
 
@@ -43,12 +59,6 @@ Player newPlayer(char *name, int x, int y, char show, Map *map)
 }
 
 int move(char direction, Player *player, Map *map, Player *allPlayers){
-
-    // Debug action
-    for (int i = 0; i < 3; ++i) {
-        printf("Bombe°%d possition= %d/%d vie= %d\n", i, player->myBomb[i].x, player->myBomb[i].y, player->myBomb[i].life);
-    }
-    printf("Nbr bombe= %d\n", player->nbrBomb);
 
     // Mettre ici la fonction qui supprime les * et # de la map
     explosionGone(map);

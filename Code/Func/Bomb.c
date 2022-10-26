@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "../Header/Bomb.h"
 #include "../Header/Structure.h"
+#include "../Header/player.h"
 
 void whoseBomb(int x, int y, Player *allPlayers){
     // Cherche la personne qui a la bombe au coordonnée x y
@@ -28,9 +29,14 @@ char whatToPut(int x, int y, Map *map, Player *allPlayers){
         case '0':
             return '*';
         case 'q':
-            // TODO: Faire une fonction pour chercher a qui est la bomb et la faire pété
             whoseBomb(x, y, allPlayers);
             explose(x, y,2, map, allPlayers);
+            break;
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+            killPlayer(x,y,allPlayers);
     }
 }
 
