@@ -20,6 +20,7 @@ typedef struct
     char *player2;
     char *player3;
     char *player4;
+    char *playerDead;
     char *bomb;
     char *bombFire;
 

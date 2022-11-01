@@ -42,6 +42,9 @@ void show(Map map, short type, Config *config){
                   case 4:
                     printf("%s ", config->player4);
                     break;
+                  case 'D':
+                    printf("%s ", config->playerDead);
+                    break;
                   case 'q':
                     printf("%s ", config->bomb);
                     break;

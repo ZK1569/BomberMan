@@ -47,8 +47,8 @@ int main()
      *   keep count of the number of players
      */
     Player testPlayer = newPlayer("Abdou", 10, 3, 1, &map);
-    Player secondPlayer = newPlayer("Cristian", 8, 4, 2, &map);
-    Player thirdPlayer = newPlayer("Loic", 9, 5, 3, &map);
+    Player secondPlayer = newPlayer("Cristian", 7, 5, 2, &map);
+    Player thirdPlayer = newPlayer("Loic", 7, 3, 3, &map);
     Player players[3] = {testPlayer, secondPlayer, thirdPlayer};
 
     Player *currentPlayer = &testPlayer;

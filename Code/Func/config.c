@@ -11,7 +11,7 @@ int getConfig(Config *config, char *configFile) {
   if (file == NULL) {
     file = fopen(configFile, "w+");
     char *configProperties = "ROWS=15\n"
-                             "COLUMNS=7\n"
+                             "COLUMNS=9\n"
                              "STRONG_WALL=⬜️\n"
                              "WEAK_WALL=🟫\n"
                              "DESTROYED_WALL=💥\n"
@@ -21,6 +21,7 @@ int getConfig(Config *config, char *configFile) {
                              "PLAYER_2=😛\n"
                              "PLAYER_3=🙁\n"
                              "PLAYER_4=😮\n"
+                             "PLAYER_DEAD=💀\n"
                              "BOMB=💣\n"
                              "BOMB_FIRE=🔥\n"
                              "\n"
@@ -99,6 +100,9 @@ int getConfig(Config *config, char *configFile) {
     }
     else if (strcmp(key, "PLAYER_4") == 0) {
       config->player4 = value;
+    }
+    else if (strcmp(key, "PLAYER_DEAD") == 0) {
+      config->playerDead = value;
     }
     else if (strcmp(key, "BOMB") == 0) {
       config->bomb = value;

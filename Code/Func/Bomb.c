@@ -40,6 +40,7 @@ char whatToPut(int x, int y, Map *map, Player *allPlayers){
         case 3:
         case 4:
             killPlayer(x,y,allPlayers);
+            return 'D';
     }
 }
 
@@ -49,40 +50,91 @@ void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers){
     // Fait exploser le centre
     map->map[y][x] = '*';
 
-    for (int i = 1; i <= sizeExposion; ++i) {
+//    for (int i = 1; i <= sizeExposion; ++i) {
+//        // Up
+//        if (map->map[y-i][x] != 'X'){
+//            map->map[y-i][x] = whatToPut(x, y-i, map, allPlayers);
+//        } else{
+//            break;
+//        }
+//    }
+//    for (int i = 1; i <= sizeExposion; ++i) {
+//        // Down
+//        if (map->map[y+i][x] != 'X'){
+//            map->map[y+i][x] = whatToPut(x, y+i, map, allPlayers);
+//        }else{
+//            break;
+//        }
+//    }
+//    for (int i = 1; i <= sizeExposion; ++i) {
+//        // Right
+//        if (map->map[y][x+i] != 'X'){
+//            map->map[y][x+i] = whatToPut(x+i, y, map, allPlayers);
+//        }else{
+//            break;
+//        }
+//    }
+//    for (int i = 1; i <= sizeExposion; ++i) {
+//        // Left
+//        if (map->map[y][x-i] != 'X'){
+//            map->map[y][x-i] = whatToPut(x-i, y, map, allPlayers);
+//        }else{
+//            break;
+//        }
+//    }
+
+      for (int i = 1; i <= sizeExposion; ++i) {
         // Up
-        if (map->map[y-i][x] != 'X'){
-            map->map[y-i][x] = whatToPut(x, y-i, map, allPlayers);
-        } else if (map->map[y-i][x] != 'm') {
-            map->map[y-i][x] = whatToPut(x, y-i, map, allPlayers);
-        } else{
-            break;
+        if (map->map[y-i][x] == 'X'){
+          break;
         }
-    }
-    for (int i = 1; i <= sizeExposion; ++i) {
+        else if (map->map[y-i][x] == 'm') {
+          map->map[y-i][x] = whatToPut(x, y-i, map, allPlayers);
+          break;
+        }
+        else{
+          map->map[y-i][x] = whatToPut(x, y-i, map, allPlayers);
+        }
+      }
+      for (int i = 1; i <= sizeExposion; ++i) {
         // Down
-        if (map->map[y+i][x] != 'X'){
-            map->map[y+i][x] = whatToPut(x, y+i, map, allPlayers);
-        }else{
-            break;
+        if (map->map[y+i][x] == 'X'){
+          break;
         }
-    }
-    for (int i = 1; i <= sizeExposion; ++i) {
+        else if (map->map[y+i][x] == 'm') {
+          map->map[y+i][x] = whatToPut(x, y+i, map, allPlayers);
+          break;
+        }
+        else{
+          map->map[y+i][x] = whatToPut(x, y+i, map, allPlayers);
+        }
+      }
+      for (int i = 1; i <= sizeExposion; ++i) {
         // Right
-        if (map->map[y][x+i] != 'X'){
-            map->map[y][x+i] = whatToPut(x+i, y, map, allPlayers);
-        }else{
-            break;
+        if (map->map[y][x+i] == 'X'){
+          break;
         }
-    }
-    for (int i = 1; i <= sizeExposion; ++i) {
+        else if (map->map[y][x+i] == 'm') {
+          map->map[y][x+i] = whatToPut(x+i, y, map, allPlayers);
+          break;
+        }
+        else{
+          map->map[y][x+i] = whatToPut(x+i, y, map, allPlayers);
+        }
+      }
+      for (int i = 1; i <= sizeExposion; ++i) {
         // Left
-        if (map->map[y][x-i] != 'X'){
-            map->map[y][x-i] = whatToPut(x-i, y, map, allPlayers);
-        }else{
-            break;
+        if (map->map[y][x-i] == 'X'){
+          break;
         }
-    }
+        else if (map->map[y][x-i] == 'm') {
+          map->map[y][x-i] = whatToPut(x-i, y, map, allPlayers);
+          break;
+        }
+        else{
+          map->map[y][x-i] = whatToPut(x-i, y, map, allPlayers);
+        }
+      }
 }
 
 void explosionGone(Map *map){
