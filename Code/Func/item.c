@@ -3,11 +3,11 @@
 
 char popItem() {
   srand(time(0));
-  int dice = rand() % 101;
+  int dice = rand() % 100 + 1;
 
   // rare items
   if (dice >= 90) {
-    int dice = rand() % 101;
+    int dice = rand() % 100 + 1;
 
     if (dice == 100) {
       return 'r'; // 🔴
@@ -24,15 +24,15 @@ char popItem() {
   }
 
   // ordinary items
-  dice = rand() % 101;
+  dice = rand() % 100 + 1;
 
   if (dice >= 75) {
-    return rand() % 101 < 50 ? 'k' : 'p' ; // 👟 - 🏃
+    return rand() % 100 + 1 < 50 ? 'k' : 'p' ; // 👟 - 🏃
   }
   else if (dice >= 50 && dice < 75) {
-    return rand() % 101 < 50 ? 'b' : 'y'; // 🔵 - 🟡
+    return rand() % 100 + 1 < 50 ? 'b' : 'y'; // 🔵 - 🟡
   }
   else {
-    return rand() % 101 ? 'd' : 'u'; // 🔽 - 🔼
+    return rand() % 100 + 1 ? 'd' : 'u'; // 🔽 - 🔼
   }
 }

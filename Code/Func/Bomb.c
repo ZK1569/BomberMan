@@ -3,6 +3,7 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "../Header/Bomb.h"
 #include "../Header/Structure.h"
 #include "../Header/player.h"
@@ -26,7 +27,8 @@ void whoseBomb(int x, int y, Player *allPlayers){
 char whatToPut(int x, int y, Map *map, Player *allPlayers){
     switch (map->map[y][x]) {
         case 'm':
-            return rand() % 101 < 0 ? '#' : popItem();
+            srand(time(0));
+            return rand() % 100 + 1 < 50 ? '#' : popItem();
         case '0':
             return '*';
         case 'q':
