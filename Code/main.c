@@ -90,12 +90,17 @@ int main()
         valid = move(direction, currentPlayer, &map, players);
         show(map, 1, config);
 
+        int iteration = 0 ;
         do {
             playerTurn = (playerTurn + 1) % numberOfPlayer;
             currentPlayer = &players[playerTurn];
-        }while(!currentPlayer->alive);
+            iteration++;
+            if (iteration == 4 ){
+                valid=0;
+            }
+        }while(!currentPlayer->alive && iteration < 4);
 
-        if (lastPlayer == currentPlayer->show){
+        if (lastPlayer == currentPlayer->show ){
             valid=0;
         }
     }

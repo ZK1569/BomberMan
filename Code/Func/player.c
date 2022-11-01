@@ -63,27 +63,12 @@ int move(char direction, Player *player, Map *map, Player *allPlayers){
     // Mettre ici la fonction qui supprime les * et # de la map
     explosionGone(map);
 
-
     // set the action of the player
     map->map[player->y][player->x] = player->back;
     if(player->back != '0'){
         player->back = '0';
     }
 
-    if (player->nbrBomb != 0){ // If the player has at less a bomb
-        for (int i = 0; i < 3; ++i) { //3 = nbr bomb (a mettre dans une variable)
-            if (player->myBomb[i].life == 0 && player->myBomb[i].x != 0 && player->myBomb[i].y != 0){
-                map->map[player->myBomb[i].y][player->myBomb[i].x] = '0';
-                explose(player->myBomb[i].x, player->myBomb[i].y, 2, map, allPlayers);
-                player->myBomb[i].x = 0;
-                player->myBomb[i].y = 0;
-                player->nbrBomb--;
-            }
-            if ((player->myBomb[i].x != 0) && (player->myBomb[i].y != 0)){ // Pour les bombes qu'il a mais qui sont sur la map et pas en reserve
-                player->myBomb[i].life--; // Enleve une vie a la bombe
-            }
-        }
-    }
 
     switch (direction) {
         case MOVE_UP:
@@ -125,7 +110,29 @@ int move(char direction, Player *player, Map *map, Player *allPlayers){
             map->map[player->y][player->x] = player->show;
             return 0;
     }
+
     map->map[player->y][player->x] = player->show;
+
+
+
+
+    if (player->nbrBomb != 0){ // If the player has at less a bomb
+        for (int i = 0; i < 3; ++i) { //3 = nbr bomb (a mettre dans une variable)
+            if (player->myBomb[i].life == 0 && player->myBomb[i].x != 0 && player->myBomb[i].y != 0){
+                map->map[player->myBomb[i].y][player->myBomb[i].x] = '0';
+                explose(player->myBomb[i].x, player->myBomb[i].y, 2, map, allPlayers);
+                player->myBomb[i].x = 0;
+                player->myBomb[i].y = 0;
+                player->nbrBomb--;
+            }
+            if ((player->myBomb[i].x != 0) && (player->myBomb[i].y != 0)){ // Pour les bombes qu'il a mais qui sont sur la map et pas en reserve
+                player->myBomb[i].life--; // Enleve une vie a la bombe
+            }
+        }
+    }
+
+
+
     return 1;
 }
 
