@@ -6,6 +6,7 @@
 #include "../Header/Bomb.h"
 #include "../Header/Structure.h"
 #include "../Header/player.h"
+#include "../Header/item.h"
 
 void whoseBomb(int x, int y, Player *allPlayers){
     // Cherche la personne qui a la bombe au coordonnée x y
@@ -25,7 +26,7 @@ void whoseBomb(int x, int y, Player *allPlayers){
 char whatToPut(int x, int y, Map *map, Player *allPlayers){
     switch (map->map[y][x]) {
         case 'm':
-            return '#';
+            return rand() % 101 < 0 ? '#' : popItem();
         case '0':
             return '*';
         case 'q':
@@ -50,7 +51,9 @@ void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers){
         // Up
         if (map->map[y-i][x] != 'X'){
             map->map[y-i][x] = whatToPut(x, y-i, map, allPlayers);
-        }else{
+        } else if (map->map[y-i][x] != 'm') {
+            map->map[y-i][x] = whatToPut(x, y-i, map, allPlayers);
+        } else{
             break;
         }
     }
