@@ -74,22 +74,37 @@ int move(char direction, Player *player, Map *map, Player *allPlayers){
         case MOVE_UP:
             if (isDirectionPossible(player->x, player->y-1, map)) {
                 player->y -= 1;
+            }else{
+                map->map[player->y][player->x] = player->show;
+                return 2;
             }
             break;
         case MOVE_RIGHT:
             if (isDirectionPossible(player->x+1, player->y, map)) {
                 player->x += 1;
+            }else{
+                map->map[player->y][player->x] = player->show;
+                return 2;
             }
             break;
         case MOVE_DOWN:
             if(isDirectionPossible(player->x, player->y+1, map)){
                 player->y += 1;
+            }else{
+                map->map[player->y][player->x] = player->show;
+                return 2;
             }
             break;
         case MOVE_LEFT:
-            if(isDirectionPossible(player->x-1, player->y, map)){
+            if(isDirectionPossible(player->x-1, player->y, map)) {
                 player->x -= 1;
+            }else{
+                map->map[player->y][player->x] = player->show;
+                return 2;
             }
+            break;
+        case MOVE_NO:
+            printf("Ne rien faire \n");
             break;
         case ACTION_PLACE_BOMB:
             if(player->nbrBomb < 3){ // 3 est le nombre de bombe ( a mettre dans un variable )
@@ -112,9 +127,6 @@ int move(char direction, Player *player, Map *map, Player *allPlayers){
     }
 
     map->map[player->y][player->x] = player->show;
-
-
-
 
     if (player->nbrBomb != 0){ // If the player has at less a bomb
         for (int i = 0; i < 3; ++i) { //3 = nbr bomb (a mettre dans une variable)

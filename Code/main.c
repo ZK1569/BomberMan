@@ -58,8 +58,9 @@ int main()
     int numberOfPlayer = 3;
     int playerTurn = 0;
 
-    map.map[4][7] = 'm';
     map.map[2][7] = 'X';
+    map.map[4][7] = 'm';
+    map.map[4][6] = 'm';
     map.map[2][2] = 'm';
 
     show(map, 1, config);
@@ -75,19 +76,25 @@ int main()
     {
         lastPlayer = currentPlayer->show;
         char *currentPlayerCharacter = setCurrentPlayerCharacter(playerTurn, config);
-        printf("%s %s : ", currentPlayerCharacter, currentPlayer->name);
 
-        direction = getPlayerInput();
-        isInputAllowed = isMovementValid(direction) || isActionValid(direction);
+        // Fait une boucle temps que la jouer n'a pas rentré une direction possible
+        do {
+            printf("%s %s : ", currentPlayerCharacter, currentPlayer->name);
 
-        while (!isInputAllowed) {
-          printf("Action invalide. %s %s : ", currentPlayerCharacter, currentPlayer->name);
+            direction = getPlayerInput();
+            isInputAllowed = isMovementValid(direction) || isActionValid(direction);
 
-          direction = getPlayerInput();
-          isInputAllowed = isMovementValid(direction) || isActionValid(direction);
-        };
+            while (!isInputAllowed) {
+              printf("Action invalide. %s %s : ", currentPlayerCharacter, currentPlayer->name);
 
-        valid = move(direction, currentPlayer, &map, players);
+              direction = getPlayerInput();
+              isInputAllowed = isMovementValid(direction) || isActionValid(direction);
+            };
+
+            valid = move(direction, currentPlayer, &map, players);
+
+        }while(valid==2);
+
         show(map, 1, config);
 
         int iteration = 0 ;

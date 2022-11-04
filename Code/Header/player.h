@@ -12,6 +12,7 @@ typedef enum {
     MOVE_LEFT = 'q',
     MOVE_DOWN = 's',
     MOVE_RIGHT = 'd',
+    MOVE_NO = 'a',
 } Movement;
 
 typedef enum {

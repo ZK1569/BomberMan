@@ -70,7 +70,8 @@ int isMovementValid(char character) {
   return character == MOVE_UP
          || character == MOVE_LEFT
          || character == MOVE_DOWN
-         || character == MOVE_RIGHT;
+         || character == MOVE_RIGHT
+         || character == MOVE_NO;
 }
 
 int isActionValid(char character) {
