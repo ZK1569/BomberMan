@@ -50,39 +50,6 @@ void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers){
     // Fait exploser le centre
     map->map[y][x] = '*';
 
-//    for (int i = 1; i <= sizeExposion; ++i) {
-//        // Up
-//        if (map->map[y-i][x] != 'X'){
-//            map->map[y-i][x] = whatToPut(x, y-i, map, allPlayers);
-//        } else{
-//            break;
-//        }
-//    }
-//    for (int i = 1; i <= sizeExposion; ++i) {
-//        // Down
-//        if (map->map[y+i][x] != 'X'){
-//            map->map[y+i][x] = whatToPut(x, y+i, map, allPlayers);
-//        }else{
-//            break;
-//        }
-//    }
-//    for (int i = 1; i <= sizeExposion; ++i) {
-//        // Right
-//        if (map->map[y][x+i] != 'X'){
-//            map->map[y][x+i] = whatToPut(x+i, y, map, allPlayers);
-//        }else{
-//            break;
-//        }
-//    }
-//    for (int i = 1; i <= sizeExposion; ++i) {
-//        // Left
-//        if (map->map[y][x-i] != 'X'){
-//            map->map[y][x-i] = whatToPut(x-i, y, map, allPlayers);
-//        }else{
-//            break;
-//        }
-//    }
-
       for (int i = 1; i <= sizeExposion; ++i) {
         // Up
         if (map->map[y-i][x] == 'X'){

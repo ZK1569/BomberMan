@@ -91,7 +91,7 @@ int main()
               isInputAllowed = isMovementValid(direction) || isActionValid(direction);
             };
 
-            valid = move(direction, currentPlayer, &map, players);
+            valid = move(direction, currentPlayer, &map, players, config);
 
         }while(valid==2);
 

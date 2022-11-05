@@ -48,6 +48,7 @@ typedef struct
 {
     int x;
     int y;
+    int range;
     int life;
 } Bomb;
 
