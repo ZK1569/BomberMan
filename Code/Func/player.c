@@ -8,7 +8,7 @@
 #include "../Header/player.h"
 #include "../Header/Bomb.h"
 
-int sizeMapX = 14;
+int sizeMapX = 9;
 int sizeMapY = 8;
 
 int killPlayer(int x, int y, Player *allPlayers){

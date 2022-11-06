@@ -2,7 +2,7 @@ XXXXXXXXXX
 X00mmmm00X
 X0mmmmmm0X
 XmmmmmmmmX
-XmmmmmmmmX
+0mmmmmmmm0
 XmmmmmmmmX
 X0mmmmmm0X
 X00mmmm00X
