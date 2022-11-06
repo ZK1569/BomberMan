@@ -8,6 +8,9 @@
 #include "../Header/player.h"
 #include "../Header/Bomb.h"
 
+int sizeMapX = 14;
+int sizeMapY = 8;
+
 int killPlayer(int x, int y, Player *allPlayers){
     for (int i = 0; i < 3; ++i) { // TODO: changer le 3 en nombre de jouer
         if (allPlayers[i].x == x && allPlayers[i].y == y && allPlayers[i].alive){
@@ -111,37 +114,57 @@ int move(char direction, Player *player, Map *map, Player *allPlayers, Config *c
 
 
     switch (direction) {
+        int nextMove = 0;
         case MOVE_UP:
-            if (isDirectionPossible(player->x, player->y-1, map)) {
-                applyItemOnPlayer(map->map[player->y-1][player->x], player, config);
-                player->y -= 1;
+            nextMove = player->y-1;
+            if (nextMove < 0){
+                nextMove = sizeMapY;
+            }
+            if (isDirectionPossible(player->x, nextMove, map)) {
+                applyItemOnPlayer(map->map[nextMove][player->x], player, config);
+                player->y = nextMove;
             }else{
                 map->map[player->y][player->x] = player->show;
                 return 2;
             }
             break;
         case MOVE_RIGHT:
-            if (isDirectionPossible(player->x+1, player->y, map)) {
-                applyItemOnPlayer(map->map[player->y][player->x+1], player, config);
-                player->x += 1;
+            nextMove = player->x+1;
+            if (nextMove > sizeMapX){
+                nextMove = 0;
+            }
+            if (isDirectionPossible(nextMove, player->y, map)) {
+                applyItemOnPlayer(map->map[player->y][nextMove], player, config);
+                player->x = nextMove;
+                if (player->x > sizeMapX){
+                    player->x = 0;
+                }
             }else{
                 map->map[player->y][player->x] = player->show;
                 return 2;
             }
             break;
         case MOVE_DOWN:
-            if(isDirectionPossible(player->x, player->y+1, map)){
-                applyItemOnPlayer(map->map[player->y+1][player->x], player, config);
-                player->y += 1;
+            nextMove = player->y+1;
+            if (nextMove > sizeMapY){
+                nextMove = 0;
+            }
+            if(isDirectionPossible(player->x, nextMove, map)){
+                applyItemOnPlayer(map->map[nextMove][player->x], player, config);
+                player->y = nextMove;
             }else{
                 map->map[player->y][player->x] = player->show;
                 return 2;
             }
             break;
         case MOVE_LEFT:
-            if(isDirectionPossible(player->x-1, player->y, map)) {
-                applyItemOnPlayer(map->map[player->y][player->x-1], player, config);
-                player->x -= 1;
+            nextMove = player->x-1;
+            if (nextMove < 0){
+                nextMove = sizeMapX;
+            }
+            if(isDirectionPossible(nextMove, player->y, map)) {
+                applyItemOnPlayer(map->map[player->y][nextMove], player, config);
+                player->x = nextMove;
             }else{
                 map->map[player->y][player->x] = player->show;
                 return 2;

@@ -77,3 +77,12 @@ int isMovementValid(char character) {
 int isActionValid(char character) {
   return character == ACTION_PLACE_BOMB;
 }
+
+int strlen(char *str){
+    int c = 0;
+    while(*str != '\0'){
+        c++;
+        str++;
+    }
+    return c;
+}

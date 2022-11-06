@@ -61,7 +61,7 @@ typedef struct
     char name[20];
     int nbrBomb;
     Bomb *myBomb;
-    int alive
+    int alive;
 } Player;
 
 #endif // BOMBERMAN_STRUCTURE_H
