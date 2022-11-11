@@ -62,12 +62,14 @@ int main()
      */
     Player testPlayer = newPlayer("Abdou", 1, 1, 1, &map);
     Player secondPlayer = newPlayer("Cristian", map.x-2, 1, 2, &map);
-//    Player thirdPlayer = newPlayer("Loic", 1, map.y-2, 3, &map);
-//    Player fourPlayer = newPlayer("test", map.x-2, map.y-2, 4, &map);
-//    Player players[4] = {testPlayer, secondPlayer, thirdPlayer,fourPlayer};
-    Player players[2] = {testPlayer, secondPlayer};
+    Player thirdPlayer = newPlayer("Loic", 1, map.y-2, 3, &map);
+    Player fourPlayer = newPlayer("test", map.x-2, map.y-2, 4, &map);
+    Player players[4] = {testPlayer, secondPlayer, thirdPlayer,fourPlayer};
+//    Player players[2] = {testPlayer, secondPlayer};
 
     Player *currentPlayer = &testPlayer;
+
+    //TODO: Si vous changger le nomrbre de joueur tot
 
 
 
@@ -86,7 +88,6 @@ int main()
     int valid = 1;
     int isInputAllowed = 0;
     char lastPlayer;
-    char winner = "";
 
     // every loop iteration we change the current player
     while (valid)
@@ -116,7 +117,7 @@ int main()
               isInputAllowed = isMovementValid(direction) || isActionValid(direction);
             };
 
-            valid = move(direction, currentPlayer, &map, players, config);
+            valid = move(direction, currentPlayer, &map, players, config, numberOfPlayer);
 
         }while(valid==2);
 
