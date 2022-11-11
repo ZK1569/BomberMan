@@ -11,7 +11,7 @@
 
 int main()
 {
-    int devMode = 0;
+    int devMode = 1;
     Config *config = malloc(sizeof(Config));
     int isConfigLoaded = getConfig(config, "app.config");
 
@@ -39,6 +39,9 @@ int main()
         break;
     }
 
+    // Choix des cartes au debut de la game
+
+
 //    Map map = newMap( config->rows, config->columns);
 //    createBorderMap(map);
 
@@ -47,7 +50,7 @@ int main()
     if (devMode){
         map = openMap("../Code/Maps/test.txt");
     }else{
-        map = openMap("../Code/Maps/map1.txt");
+        map = openMap("../Code/Maps/map2.txt");
     }
     printf("Map = %d, %d\n", map.x, map.y);
 
@@ -58,15 +61,17 @@ int main()
      *   keep count of the number of players
      */
     Player testPlayer = newPlayer("Abdou", 1, 1, 1, &map);
-    Player secondPlayer = newPlayer("Cristian", 8, 1, 2, &map);
-    Player thirdPlayer = newPlayer("Loic", 1, 7, 3, &map);
-    Player players[3] = {testPlayer, secondPlayer, thirdPlayer};
+    Player secondPlayer = newPlayer("Cristian", map.x-2, 1, 2, &map);
+//    Player thirdPlayer = newPlayer("Loic", 1, map.y-2, 3, &map);
+//    Player fourPlayer = newPlayer("test", map.x-2, map.y-2, 4, &map);
+//    Player players[4] = {testPlayer, secondPlayer, thirdPlayer,fourPlayer};
+    Player players[2] = {testPlayer, secondPlayer};
 
     Player *currentPlayer = &testPlayer;
 
 
 
-    int numberOfPlayer = 3;
+    int numberOfPlayer = sizeof(players)/sizeof(Player);
     int playerTurn = 0;
 
 //    map.map[2][7] = 'X';
@@ -89,16 +94,16 @@ int main()
         lastPlayer = currentPlayer->show;
         char *currentPlayerCharacter = setCurrentPlayerCharacter(playerTurn, config);
 
+        // Show bombs of the current player in devMode
+        if (devMode){
+            for (int i = 0; i < 3; ++i) {
+                printf("%d: Bomb(%d,%d), life = %d \n",i, currentPlayer->myBomb[i].x, currentPlayer->myBomb[i].x, currentPlayer->myBomb[i].life);
+            }
+            printf("Nombre Total bomb = %d\n",currentPlayer->nbrBomb);
+        }
+
         // Fait une boucle temps que la jouer n'a pas rentré une direction possible
         do {
-            // Show bombs of the current player in devMode
-            if (devMode){
-                for (int i = 0; i < 3; ++i) {
-                    printf("%d: Bomb(%d,%d), life = %d \n",i, currentPlayer->myBomb[i].x, currentPlayer->myBomb[i].x, currentPlayer->myBomb[i].life);
-                }
-                printf("Nombre Total bomb = %d\n",currentPlayer->nbrBomb);
-            }
-
             printf("%s %s : ", currentPlayerCharacter, currentPlayer->name);
 
             direction = getPlayerInput();
@@ -117,24 +122,20 @@ int main()
 
         show(map, 1, config);
 
-        int iteration = 0 ;
+        // Passe au joueur suivant vivant et que au minimum 1 joueur est vivant
+        int change = 0;
         do {
             playerTurn = (playerTurn + 1) % numberOfPlayer;
             currentPlayer = &players[playerTurn];
-            iteration++;
-            if (iteration >= 4 ){
-                printf("il passe ici ? ");
-                valid=0;
-            }
-        }while(!currentPlayer->alive && iteration <= 4);
+            change++;
+        }while(!currentPlayer->alive && change < numberOfPlayer);
 
-        if (lastPlayer == currentPlayer->show ){
+        if (lastPlayer == currentPlayer->show || change > numberOfPlayer){
             valid=0;
-//            winner = currentPlayer->name;
         }
     }
 
-    printf("%s est le grand gagnant", winner);
+    printf("%s est le grand gagnant", currentPlayer->name);
 
     // Free the map
     for (int i = 0; i < map.y; ++i)
