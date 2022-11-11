@@ -8,9 +8,6 @@
 #include "../Header/player.h"
 #include "../Header/Bomb.h"
 
-int sizeMapX = 9;
-int sizeMapY = 8;
-
 int killPlayer(int x, int y, Player *allPlayers){
     for (int i = 0; i < 3; ++i) { // TODO: changer le 3 en nombre de jouer
         if (allPlayers[i].x == x && allPlayers[i].y == y && allPlayers[i].alive){
@@ -45,9 +42,9 @@ Player newPlayer(char *name, int x, int y, char show, Map *map)
     strncpy(new.name, name, strlen(name) + 1);
     new.show = show;
     new.back = '0';
-    new.nbrBomb = 3;
-    new.myBomb = malloc(sizeof(Bomb) * new.nbrBomb); // nbr bomb (a mettre dans une variable)
-    for (int i = 0; i < new.nbrBomb; ++i)
+    new.nbrBomb = 0;
+    new.myBomb = malloc(sizeof(Bomb) * 3); // Tout les joueurs commencent avec 3 Bomb
+    for (int i = 0; i < 3; ++i)
     {
         new.myBomb[i].x = 0;
         new.myBomb[i].y = 0;
@@ -118,7 +115,7 @@ int move(char direction, Player *player, Map *map, Player *allPlayers, Config *c
         case MOVE_UP:
             nextMove = player->y-1;
             if (nextMove < 0){
-                nextMove = sizeMapY;
+                nextMove = map->y-1;
             }
             if (isDirectionPossible(player->x, nextMove, map)) {
                 applyItemOnPlayer(map->map[nextMove][player->x], player, config);
@@ -130,15 +127,12 @@ int move(char direction, Player *player, Map *map, Player *allPlayers, Config *c
             break;
         case MOVE_RIGHT:
             nextMove = player->x+1;
-            if (nextMove > sizeMapX){
+            if (nextMove > map->x-1){
                 nextMove = 0;
             }
             if (isDirectionPossible(nextMove, player->y, map)) {
                 applyItemOnPlayer(map->map[player->y][nextMove], player, config);
                 player->x = nextMove;
-                if (player->x > sizeMapX){
-                    player->x = 0;
-                }
             }else{
                 map->map[player->y][player->x] = player->show;
                 return 2;
@@ -146,7 +140,7 @@ int move(char direction, Player *player, Map *map, Player *allPlayers, Config *c
             break;
         case MOVE_DOWN:
             nextMove = player->y+1;
-            if (nextMove > sizeMapY){
+            if (nextMove > map->y-1){
                 nextMove = 0;
             }
             if(isDirectionPossible(player->x, nextMove, map)){
@@ -160,7 +154,7 @@ int move(char direction, Player *player, Map *map, Player *allPlayers, Config *c
         case MOVE_LEFT:
             nextMove = player->x-1;
             if (nextMove < 0){
-                nextMove = sizeMapX;
+                nextMove = map->x-1;
             }
             if(isDirectionPossible(nextMove, player->y, map)) {
                 applyItemOnPlayer(map->map[player->y][nextMove], player, config);
@@ -196,10 +190,10 @@ int move(char direction, Player *player, Map *map, Player *allPlayers, Config *c
     map->map[player->y][player->x] = player->show;
 
     if (player->nbrBomb >= 1){ // If the player has at less a bomb
-        for (int i = 0; i < player->nbrBomb; ++i) { //3 = nbr bomb (a mettre dans une variable)
+        for (int i = 0; i < 3; ++i) { //3 = nbr bomb (a mettre dans une variable)
             if (player->myBomb[i].life == 0 && player->myBomb[i].x != 0 && player->myBomb[i].y != 0){
-                map->map[player->myBomb[i].y][player->myBomb[i].x] = '0';
-                explose(player->myBomb[i].x, player->myBomb[i].y, player->myBomb->range, map, allPlayers);
+//                map->map[player->myBomb[i].y][player->myBomb[i].x] = '0';
+                explose(player->myBomb[i].x, player->myBomb[i].y, player->myBomb[i].range, map, allPlayers);
                 player->myBomb[i].x = 0;
                 player->myBomb[i].y = 0;
                 player->nbrBomb--;
