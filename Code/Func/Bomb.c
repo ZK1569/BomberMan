@@ -24,7 +24,12 @@ void whoseBomb(int x, int y, Player *allPlayers){
     }
 }
 
-char whatToPut(int x, int y, Map *map, Player *allPlayers){
+char whatToPut(int x, int y, Map *map, Player *allPlayers, Player *player) {
+    if (map == NULL) {
+        player->alive = 0;
+        return 'D';
+    }
+
     switch (map->map[y][x]) {
         case 'm':
             srand(time(0));
@@ -33,22 +38,32 @@ char whatToPut(int x, int y, Map *map, Player *allPlayers){
             return '*';
         case 'q':
             whoseBomb(x, y, allPlayers);
-            explose(x, y,2, map, allPlayers);
+            explose(x, y,2, map, allPlayers, player);
             break;
         case 1:
         case 2:
         case 3:
         case 4:
-            killPlayer(x,y,allPlayers);
-            return 'D';
+//          if (player->vestItemCounter > 0) {
+//            player->vestItemCounter--;
+//            return player->show;
+//          }
+
+          killPlayer(x,y,allPlayers);
+          return 'D';
     }
 }
 
-void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers){
+void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers, Player *player){
 
 //    caseExploded(x,y,sizeExposion);
     // Fait exploser le centre
-    map->map[y][x] = '*';
+      if (map->map[y][x] == 1 || map->map[y][x] == 2 || map->map[y][x] == 3 || map->map[y][x] == 4) {
+        map->map[y][x] = whatToPut(-1, -1, NULL, NULL, player);
+      }
+      else {
+        map->map[y][x] = '*';
+      }
 
       for (int i = 1; i <= sizeExposion; ++i) {
         // Up
@@ -56,11 +71,11 @@ void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers){
           break;
         }
         else if (map->map[y-i][x] == 'm') {
-          map->map[y-i][x] = whatToPut(x, y-i, map, allPlayers);
+          map->map[y-i][x] = whatToPut(x, y-i, map, allPlayers, NULL);
           break;
         }
         else{
-          map->map[y-i][x] = whatToPut(x, y-i, map, allPlayers);
+          map->map[y-i][x] = whatToPut(x, y-i, map, allPlayers, NULL);
         }
       }
       for (int i = 1; i <= sizeExposion; ++i) {
@@ -69,11 +84,11 @@ void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers){
           break;
         }
         else if (map->map[y+i][x] == 'm') {
-          map->map[y+i][x] = whatToPut(x, y+i, map, allPlayers);
+          map->map[y+i][x] = whatToPut(x, y+i, map, allPlayers, NULL);
           break;
         }
         else{
-          map->map[y+i][x] = whatToPut(x, y+i, map, allPlayers);
+          map->map[y+i][x] = whatToPut(x, y+i, map, allPlayers, NULL);
         }
       }
       for (int i = 1; i <= sizeExposion; ++i) {
@@ -82,11 +97,11 @@ void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers){
           break;
         }
         else if (map->map[y][x+i] == 'm') {
-          map->map[y][x+i] = whatToPut(x+i, y, map, allPlayers);
+          map->map[y][x+i] = whatToPut(x+i, y, map, allPlayers, NULL);
           break;
         }
         else{
-          map->map[y][x+i] = whatToPut(x+i, y, map, allPlayers);
+          map->map[y][x+i] = whatToPut(x+i, y, map, allPlayers, NULL);
         }
       }
       for (int i = 1; i <= sizeExposion; ++i) {
@@ -95,11 +110,11 @@ void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers){
           break;
         }
         else if (map->map[y][x-i] == 'm') {
-          map->map[y][x-i] = whatToPut(x-i, y, map, allPlayers);
+          map->map[y][x-i] = whatToPut(x-i, y, map, allPlayers, NULL);
           break;
         }
         else{
-          map->map[y][x-i] = whatToPut(x-i, y, map, allPlayers);
+          map->map[y][x-i] = whatToPut(x-i, y, map, allPlayers, NULL);
         }
       }
 }
@@ -107,7 +122,8 @@ void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers){
 void explosionGone(Map *map){
     for (int i = 0; i < map->y; ++i) {
         for (int j = 0; j < map->x; ++j) {
-            if (map->map[i][j] == '*' || map->map[i][j] == '#'){
+//          printf("explosion gone %c %d %d\n", map->map[i][j], i, j);
+            if (map->map[i][j] == '*' || map->map[i][j] == '#' || map->map[i][j] == 'D'){
                 map->map[i][j] = '0';
             }
         }

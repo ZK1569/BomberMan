@@ -61,6 +61,11 @@ typedef struct
     char name[20];
     int nbrBomb;
     Bomb *myBomb;
+    int hasBombPassItem;
+    int hasKickItem;
+    int vestItemCounter;
+    int heartItemCounter;
+    int isOnBomb;
     int alive
 } Player;
 
