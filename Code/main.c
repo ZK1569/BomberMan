@@ -11,6 +11,7 @@
 
 int main()
 {
+    int devMode = 0;
     Config *config = malloc(sizeof(Config));
     int isConfigLoaded = getConfig(config, "app.config");
 
@@ -41,7 +42,14 @@ int main()
 //    Map map = newMap( config->rows, config->columns);
 //    createBorderMap(map);
 
-    Map map = openMap("../Code/Maps/map1.txt");
+    Map map;
+
+    if (devMode){
+        map = openMap("../Code/Maps/test.txt");
+    }else{
+        map = openMap("../Code/Maps/map1.txt");
+    }
+    printf("Map = %d, %d\n", map.x, map.y);
 
 
     /*
@@ -84,6 +92,14 @@ int main()
 
         // Fait une boucle temps que la jouer n'a pas rentré une direction possible
         do {
+            // Show bombs of the current player in devMode
+            if (devMode){
+                for (int i = 0; i < 3; ++i) {
+                    printf("%d: Bomb(%d,%d), life = %d \n",i, currentPlayer->myBomb[i].x, currentPlayer->myBomb[i].x, currentPlayer->myBomb[i].life);
+                }
+                printf("Nombre Total bomb = %d\n",currentPlayer->nbrBomb);
+            }
+
             printf("%s %s : ", currentPlayerCharacter, currentPlayer->name);
 
             direction = getPlayerInput();

@@ -8,7 +8,6 @@
 #include "../Header/player.h"
 #include "../Header/Bomb.h"
 
-
 int sizeMapX = 9;
 int sizeMapY = 8;
 
@@ -36,22 +35,25 @@ int isDirectionPossibleWithoutBombPassItem(int x, int y, Map *map) {
   return 0;
 }
 
-Player newPlayer(char *name, int x, int y, char show, Map *map) {
-  // Create a new player
-  Player new;
-  new.x = x;
-  new.y = y;
-  strncpy(new.name, name, strlen(name) + 1);
-  new.show = show;
-  new.back = '0';
-  new.nbrBomb = 3;
-  new.myBomb = malloc(sizeof(Bomb) * new.nbrBomb); // nbr bomb (a mettre dans une variable)
-  for (int i = 0; i < new.nbrBomb; ++i) {
-    new.myBomb[i].x = 0;
-    new.myBomb[i].y = 0;
-    new.myBomb[i].range = 2;
-    new.myBomb[i].life = 0;
-  }
+Player newPlayer(char *name, int x, int y, char show, Map *map)
+{
+    // Create a new player
+    Player new;
+    new.x = x;
+    new.y = y;
+    strncpy(new.name, name, strlen(name) + 1);
+    new.show = show;
+    new.back = '0';
+    new.nbrBomb = 0;
+    new.myBomb = malloc(sizeof(Bomb) * 3); // Tout les joueurs commencent avec 3 Bomb
+    for (int i = 0; i < 3; ++i)
+    {
+        new.myBomb[i].x = 0;
+        new.myBomb[i].y = 0;
+        new.myBomb[i].range = 2;
+        new.myBomb[i].life = 0;
+    }
+    new.alive = 1;
 
   new.hasBombPassItem = 0;
   new.hasKickItem = 0;
@@ -112,121 +114,6 @@ void setBombCoordinates(Player *player, int x, int y) {
   player->myBomb->x = x;
   player->myBomb->y = y;
 }
-
-//int move(char direction, Player *player, Map *map, Player *allPlayers, Config *config){
-//
-//    // Mettre ici la fonction qui supprime les * et # de la map
-//    explosionGone(map);
-//
-//    // set the action of the player
-//    map->map[player->y][player->x] = player->back;
-//    if(player->back != '0'){
-//        player->back = '0';
-//    }
-//
-//
-//    switch (direction) {
-//        int nextMove = 0;
-//        case MOVE_UP:
-//            nextMove = player->y-1;
-//            if (nextMove < 0){
-//                nextMove = sizeMapY;
-//            }
-//            if (isDirectionPossible(player->x, nextMove, map)) {
-//                applyItemOnPlayer(map->map[nextMove][player->x], player, config);
-//                player->y = nextMove;
-//            }else{
-//                map->map[player->y][player->x] = player->show;
-//                return 2;
-//            }
-//            break;
-//        case MOVE_RIGHT:
-//            nextMove = player->x+1;
-//            if (nextMove > sizeMapX){
-//                nextMove = 0;
-//            }
-//            if (isDirectionPossible(nextMove, player->y, map)) {
-//                applyItemOnPlayer(map->map[player->y][nextMove], player, config);
-//                player->x = nextMove;
-//                if (player->x > sizeMapX){
-//                    player->x = 0;
-//                }
-//            }else{
-//                map->map[player->y][player->x] = player->show;
-//                return 2;
-//            }
-//            break;
-//        case MOVE_DOWN:
-//            nextMove = player->y+1;
-//            if (nextMove > sizeMapY){
-//                nextMove = 0;
-//            }
-//            if(isDirectionPossible(player->x, nextMove, map)){
-//                applyItemOnPlayer(map->map[nextMove][player->x], player, config);
-//                player->y = nextMove;
-//            }else{
-//                map->map[player->y][player->x] = player->show;
-//                return 2;
-//            }
-//            break;
-//        case MOVE_LEFT:
-//            nextMove = player->x-1;
-//            if (nextMove < 0){
-//                nextMove = sizeMapX;
-//            }
-//            if(isDirectionPossible(nextMove, player->y, map)) {
-//                applyItemOnPlayer(map->map[player->y][nextMove], player, config);
-//                player->x = nextMove;
-//            }else{
-//                map->map[player->y][player->x] = player->show;
-//                return 2;
-//            }
-//            break;
-//        case MOVE_NO:
-//            printf("Ne rien faire \n");
-//            break;
-//        case ACTION_PLACE_BOMB:
-////            if(player->nbrBomb < 3){ // 3 est le nombre de bombe ( a mettre dans un variable )
-//                for (int i = 0; i < 3; ++i) {
-//                    if (player->myBomb[i].x == 0 || player->myBomb[i].y == 0){
-//                        player->myBomb[i].x = player->x;
-//                        player->myBomb[i].y = player->y;
-//                        player->myBomb[i].life = 5; //5 a mettre dans une variable = nbr de tour avant quel explose
-//                        player->nbrBomb++;
-//                        break;
-//                    }
-//                }
-//                player->back = MOVE_LEFT;
-////            }
-//            break;
-//        default:
-//            printf("Please enter a good direction \n");
-//            map->map[player->y][player->x] = player->show;
-//            return 0;
-//    }
-//
-//    map->map[player->y][player->x] = player->show;
-//
-//    if (player->nbrBomb >= 1){ // If the player has at less a bomb
-//        for (int i = 0; i < player->nbrBomb; ++i) { //3 = nbr bomb (a mettre dans une variable)
-//            if (player->myBomb[i].life == 0 && player->myBomb[i].x != 0 && player->myBomb[i].y != 0){
-//                map->map[player->myBomb[i].y][player->myBomb[i].x] = '0';
-//                explose(player->myBomb[i].x, player->myBomb[i].y, player->myBomb->range, map, allPlayers);
-//                player->myBomb[i].x = 0;
-//                player->myBomb[i].y = 0;
-//                player->nbrBomb--;
-//            }
-//            if ((player->myBomb[i].x != 0) && (player->myBomb[i].y != 0)){ // Pour les bombes qu'il a mais qui sont sur la map et pas en reserve
-//                player->myBomb[i].life--; // Enleve une vie a la bombe
-//            }
-//        }
-//    }
-//
-//
-//
-//    return 1;
-//>>>>>>> c2853a1 (Limit player and map)
-//}
 
 void kickBomb(Map *map, char direction, Player *player, Config *config) {
   int kickRange = config->rows > config->columns ? config->rows : config->columns;
@@ -491,21 +378,16 @@ int move(char direction, Player *player, Map *map, Player *allPlayers, Config *c
     for (int i = 0; i < player->nbrBomb; ++i) { //3 = nbr bomb (a mettre dans une variable)
       if (player->myBomb[i].life == 0 && player->myBomb[i].x != 0 && player->myBomb[i].y != 0) {
 //        map->map[player->myBomb[i].y][player->myBomb[i].x] = '0';
-//        if (player->isOnBomb == 1) {
-//          map->map[player->myBomb[i].y][player->myBomb[i].x] = 'q';
-//        }
         explose(player->myBomb[i].x, player->myBomb[i].y, player->myBomb->range, map, allPlayers, player);
         player->myBomb[i].x = 0;
         player->myBomb[i].y = 0;
         player->nbrBomb--;
       }
-      if ((player->myBomb[i].x != 0) &&
-          (player->myBomb[i].y != 0)) { // Pour les bombes qu'il a mais qui sont sur la map et pas en reserve
+      if ((player->myBomb[i].x != 0) && (player->myBomb[i].y != 0)) { // Pour les bombes qu'il a mais qui sont sur la map et pas en reserve
         player->myBomb[i].life--; // Enleve une vie a la bombe
       }
     }
   }
-
 
   return 1;
 }
