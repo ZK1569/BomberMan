@@ -66,7 +66,7 @@ typedef struct
     int vestItemCounter;
     int heartItemCounter;
     int isOnBomb;
-    int alive
+    int alive;
 } Player;
 
 #endif // BOMBERMAN_STRUCTURE_H

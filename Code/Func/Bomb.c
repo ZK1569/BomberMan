@@ -122,7 +122,6 @@ void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers, Playe
 void explosionGone(Map *map){
     for (int i = 0; i < map->y; ++i) {
         for (int j = 0; j < map->x; ++j) {
-//          printf("explosion gone %c %d %d\n", map->map[i][j], i, j);
             if (map->map[i][j] == '*' || map->map[i][j] == '#' || map->map[i][j] == 'D'){
                 map->map[i][j] = '0';
             }

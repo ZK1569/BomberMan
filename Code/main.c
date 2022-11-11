@@ -38,17 +38,21 @@ int main()
         break;
     }
 
-    Map map = newMap( config->rows, config->columns);
-    createBorderMap(map);
+//    Map map = newMap( config->rows, config->columns);
+//    createBorderMap(map);
+
+    Map map = openMap("../Code/Maps/map1.txt");
+
 
     /*
      *   Initialize three players
      *   Store them in an array
      *   keep count of the number of players
      */
-    Player testPlayer = newPlayer("Abdou", 10, 3, 1, &map);
-    Player secondPlayer = newPlayer("Cristian", 8, 5, 2, &map);
-    Player thirdPlayer = newPlayer("Loic", 7, 3, 3, &map);
+
+    Player testPlayer = newPlayer("Abdou", 1, 1, 1, &map);
+    Player secondPlayer = newPlayer("Cristian", 8, 1, 2, &map);
+    Player thirdPlayer = newPlayer("Loic", 1, 7, 3, &map);
     Player players[3] = {testPlayer, secondPlayer, thirdPlayer};
 
     Player *currentPlayer = &testPlayer;
@@ -58,10 +62,10 @@ int main()
     int numberOfPlayer = 3;
     int playerTurn = 0;
 
-    map.map[2][7] = 'X';
-    map.map[4][7] = 'm';
-    map.map[4][6] = 'm';
-    map.map[2][2] = 'm';
+//    map.map[2][7] = 'X';
+//    map.map[4][7] = 'm';
+//    map.map[4][6] = 'm';
+//    map.map[2][2] = 'm';
 
     show(map, 1, config);
 
@@ -70,6 +74,7 @@ int main()
     int valid = 1;
     int isInputAllowed = 0;
     char lastPlayer;
+    char winner = "";
 
     // every loop iteration we change the current player
     while (valid)
@@ -102,17 +107,19 @@ int main()
             playerTurn = (playerTurn + 1) % numberOfPlayer;
             currentPlayer = &players[playerTurn];
             iteration++;
-            if (iteration == 4 ){
+            if (iteration >= 4 ){
+                printf("il passe ici ? ");
                 valid=0;
             }
-        }while(!currentPlayer->alive && iteration < 4);
+        }while(!currentPlayer->alive && iteration <= 4);
 
         if (lastPlayer == currentPlayer->show ){
             valid=0;
+//            winner = currentPlayer->name;
         }
     }
 
-    printf("C'est la fin de la game.");
+    printf("%s est le grand gagnant", winner);
 
     // Free the map
     for (int i = 0; i < map.y; ++i)

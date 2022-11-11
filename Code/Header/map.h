@@ -10,6 +10,8 @@ char **createMap(int x, int y);
 
 Map newMap(int x, int y);
 
+Map openMap(char *path);
+
 void createBorderMap(Map map);
 
 
