@@ -345,7 +345,10 @@ int move(char direction, Player *player, Map *map, Player *allPlayers, Config *c
       break;
 
     case ACTION_PLACE_BOMB:
-      if (player->isOnBomb) break;
+      if (player->isOnBomb) {
+        printf("Il y a déjà une bombe...\n");
+        return 2;
+      }
       player->isOnBomb = 1;
 
 //            if(player->nbrBomb < 3){ // 3 est le nombre de bombe ( a mettre dans un variable )
