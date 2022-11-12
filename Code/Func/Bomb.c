@@ -73,10 +73,11 @@ void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers, int n
     if (next < 0) {
       next = map->y - 1;
     }
+    printf("%d est le suivant au top \n", next);
 
     if (map->map[next][x] == 'X') {
       break;
-    } else if (map->map[y - i][x] == 'm') {
+    } else if (map->map[next][x] == 'm') {
       map->map[next][x] = whatToPut(x, next, map, allPlayers, nbrPlayers, NULL);
       break;
     } else {

@@ -372,15 +372,18 @@ int move(char direction, Player *player, Map *map, Player *allPlayers, Config *c
   map->map[player->y][player->x] = player->show;
 
   if (player->nbrBomb >= 1) { // If the player has at less a bomb
-    for (int i = 0; i < player->nbrBomb; ++i) { //3 = nbr bomb (a mettre dans une variable)
-      if (player->myBomb[i].life == 0 && player->myBomb[i].x != 0 && player->myBomb[i].y != 0) {
-//        map->map[player->myBomb[i].y][player->myBomb[i].x] = '0';
-        explose(player->myBomb[i].x, player->myBomb[i].y, player->myBomb->range, map, allPlayers, nbrPlayers, player);
-        player->myBomb[i].x = 0;
-        player->myBomb[i].y = 0;
-        player->nbrBomb--;
+    for (int i = 0; i < 3; ++i) { //3 = nbr bomb (a mettre dans une variable)
+      if (player->myBomb[i].life == 0) {
+          if(!(player->myBomb[i].x == 0 && player->myBomb[i].y == 0)){
+              // Fait exploser la bombe d'un joueur qui a jouer si la vie de la bomb est a 0
+              // et si elle est sur la map
+              explose(player->myBomb[i].x, player->myBomb[i].y, player->myBomb->range, map, allPlayers, nbrPlayers, player);
+              player->myBomb[i].x = 0;
+              player->myBomb[i].y = 0;
+              player->nbrBomb--;
+          }
       }
-      if ((player->myBomb[i].x != 0) && (player->myBomb[i].y != 0)) { // Pour les bombes qu'il a mais qui sont sur la map et pas en reserve
+      if (!(player->myBomb[i].x == 0 && player->myBomb[i].y == 0)) { // Pour les bombes qu'il a mais qui sont sur la map et pas en reserve
         player->myBomb[i].life--; // Enleve une vie a la bombe
       }
     }

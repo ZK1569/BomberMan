@@ -62,10 +62,10 @@ int main()
      */
     Player testPlayer = newPlayer("Abdou", 1, 1, 1, &map);
     Player secondPlayer = newPlayer("Cristian", map.x-2, 1, 2, &map);
-    Player thirdPlayer = newPlayer("Loic", 1, map.y-2, 3, &map);
-    Player fourPlayer = newPlayer("test", map.x-2, map.y-2, 4, &map);
-    Player players[4] = {testPlayer, secondPlayer, thirdPlayer,fourPlayer};
-//    Player players[2] = {testPlayer, secondPlayer};
+//    Player thirdPlayer = newPlayer("Loic", 1, map.y-2, 3, &map);
+//    Player fourPlayer = newPlayer("test", map.x-2, map.y-2, 4, &map);
+//    Player players[4] = {testPlayer, secondPlayer, thirdPlayer,fourPlayer};
+    Player players[2] = {testPlayer, secondPlayer};
 
     Player *currentPlayer = &testPlayer;
 
