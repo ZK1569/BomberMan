@@ -7,7 +7,7 @@
 
 #include "map.h"
 
-void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers, int nbrPlayers);
+void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers, int nbrPlayers, Player *player);
 
 void explosionGone(Map *map);
 
