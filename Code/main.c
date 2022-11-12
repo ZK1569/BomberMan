@@ -60,7 +60,6 @@ int main()
      *   Store them in an array
      *   keep count of the number of players
      */
-
     Player testPlayer = newPlayer("Abdou", 1, 1, 1, &map);
     Player secondPlayer = newPlayer("Cristian", map.x-2, 1, 2, &map);
     Player thirdPlayer = newPlayer("Loic", 1, map.y-2, 3, &map);

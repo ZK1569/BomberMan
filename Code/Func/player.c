@@ -8,9 +8,6 @@
 #include "../Header/player.h"
 #include "../Header/Bomb.h"
 
-int sizeMapX = 9;
-int sizeMapY = 8;
-
 int killPlayer(int x, int y, Player *allPlayers){
     for (int i = 0; i < 3; ++i) { // TODO: changer le 3 en nombre de jouer
         if (allPlayers[i].x == x && allPlayers[i].y == y && allPlayers[i].alive){
@@ -217,7 +214,7 @@ int move(char direction, Player *player, Map *map, Player *allPlayers, Config *c
     case MOVE_UP:
       nextMove = player->y-1;
       if (nextMove < 0){
-        nextMove = sizeMapY;
+        nextMove = map->y-1;
       }
 
       if (isDirectionPossibleWithoutBombPassItem(player->x, nextMove, map)) {
@@ -248,7 +245,7 @@ int move(char direction, Player *player, Map *map, Player *allPlayers, Config *c
 
     case MOVE_RIGHT:
       nextMove = player->x+1;
-      if (nextMove > sizeMapX){
+      if (nextMove > map->x-1){
         nextMove = 0;
       }
 
@@ -280,7 +277,7 @@ int move(char direction, Player *player, Map *map, Player *allPlayers, Config *c
 
     case MOVE_DOWN:
       nextMove = player->y+1;
-      if (nextMove > sizeMapY){
+      if (nextMove > map->y-1){
         nextMove = 0;
       }
 
@@ -314,7 +311,7 @@ int move(char direction, Player *player, Map *map, Player *allPlayers, Config *c
     case MOVE_LEFT:
       nextMove = player->x-1;
       if (nextMove < 0){
-        nextMove = sizeMapX;
+        nextMove = map->x-1;
       }
 
       if (isDirectionPossibleWithoutBombPassItem(nextMove, player->y, map)) {
