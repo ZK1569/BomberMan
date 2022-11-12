@@ -200,7 +200,7 @@ void kickBomb(Map *map, char direction, Player *player, Config *config) {
   }
 }
 
-int move(char direction, Player *player, Map *map, Player *allPlayers, Config *config) {
+int move(char direction, Player *player, Map *map, Player *allPlayers, Config *config, int nbrPlayers) {
 
   // Mettre ici la fonction qui supprime les * et # de la map
   explosionGone(map);
@@ -378,7 +378,7 @@ int move(char direction, Player *player, Map *map, Player *allPlayers, Config *c
     for (int i = 0; i < player->nbrBomb; ++i) { //3 = nbr bomb (a mettre dans une variable)
       if (player->myBomb[i].life == 0 && player->myBomb[i].x != 0 && player->myBomb[i].y != 0) {
 //        map->map[player->myBomb[i].y][player->myBomb[i].x] = '0';
-        explose(player->myBomb[i].x, player->myBomb[i].y, player->myBomb->range, map, allPlayers, player);
+        explose(player->myBomb[i].x, player->myBomb[i].y, player->myBomb->range, map, allPlayers, nbrPlayers, player);
         player->myBomb[i].x = 0;
         player->myBomb[i].y = 0;
         player->nbrBomb--;

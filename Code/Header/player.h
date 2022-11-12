@@ -23,7 +23,7 @@ Player newPlayer(char *name, int x, int y, char show, Map *map);
 
 void applyItemOnPlayer(char item, Player *player, Config *config);
 char getPlayerInput(void);
-int move(char direction, Player *player, Map *map, Player *players, Config *config);
+int move(char direction, Player *player, Map *map, Player *players, Config *config, int nbrPlayers);
 char *setCurrentPlayerCharacter(int playerTurn, Config *config);
 int killPlayer(int x, int y, Player *allPlayers);
 
