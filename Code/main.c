@@ -11,7 +11,8 @@
 
 int main()
 {
-    int devMode = 1;
+    // Switch 1 for devMode 0 for real game
+    int devMode = 0;
     Config *config = malloc(sizeof(Config));
     int isConfigLoaded = getConfig(config, "app.config");
 
@@ -39,18 +40,25 @@ int main()
         break;
     }
 
-    // Choix des cartes au debut de la game
-
-
 //    Map map = newMap( config->rows, config->columns);
 //    createBorderMap(map);
 
     Map map;
 
     if (devMode){
-        map = openMap("../Code/Maps/test.txt");
+        map = openMap(whatMap(0));
     }else{
-        map = openMap("../Code/Maps/map2.txt");
+
+        // Choix des cartes au debut de la game
+        showAllMaps(config);
+        int choiceMap = 0;
+        do {
+            printf("Quel map voulez-vous utiliser : ");
+            choiceMap = getUserInput();
+            printf("\n");
+        }while(choiceMap < 0 && choiceMap <= 3); // 3 est le nombre total de map
+
+        map = openMap(whatMap(choiceMap));
     }
     printf("Map = %d, %d\n", map.x, map.y);
 
