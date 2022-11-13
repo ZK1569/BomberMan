@@ -3,7 +3,6 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #include "../Header/Bomb.h"
 #include "../Header/Structure.h"
 #include "../Header/player.h"
@@ -33,8 +32,7 @@ char whatToPut(int x, int y, Map *map, Player *allPlayers, int nbrPlayers, Playe
 
   switch (map->map[y][x]) {
     case 'm':
-      srand(time(0));
-      return rand() % 100 + 1 < 50 ? '#' : popItem();
+      return (rand() % (100 + 1)) < 50 ? '#' : popItem();
     case '0':
       return '*';
     case 'q':
