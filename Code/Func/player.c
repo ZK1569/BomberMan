@@ -53,7 +53,7 @@ Player newPlayer(char *name, int x, int y, char show, Map *map)
     new.alive = 1;
 
   new.hasBombPassItem = 0;
-  new.hasKickItem = 0;
+  new.hasKickItem = 1;
   new.isOnBomb = 0;
   new.alive = 1;
 
@@ -118,7 +118,7 @@ void kickBomb(Map *map, char direction, Player *player, Config *config) {
   switch (direction) {
     case MOVE_UP:
       for (int i = 2; i <= kickRange; ++i) {
-          if (player->y - i >= 0 && map->map[player->y - i][player->x] == '0') continue;
+          if (player->y - i >= 1 && map->map[player->y - i][player->x] == '0') continue;
           map->map[player->y - 1][player->x] = '0';
 
 //        if (player->y - i <= -1 && map->map[config->columns - 1][player->x] == '0') {
@@ -163,7 +163,7 @@ void kickBomb(Map *map, char direction, Player *player, Config *config) {
 
     case MOVE_DOWN:
       for (int i = 2; i <= kickRange; ++i) {
-        if (player->y + i < config->columns && map->map[player->y + i][player->x] == '0') continue;
+        if (player->y + i < config->columns - 1 && map->map[player->y + i][player->x] == '0') continue;
         map->map[player->y + 1][player->x] = '0';
 
         if (map->map[player->y + i][player->x] != '0') {
