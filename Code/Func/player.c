@@ -53,7 +53,7 @@ Player newPlayer(char *name, int x, int y, char show, Map *map)
     new.alive = 1;
 
   new.hasBombPassItem = 0;
-  new.hasKickItem = 1;
+  new.hasKickItem = 0;
   new.isOnBomb = 0;
   new.alive = 1;
 
