@@ -67,7 +67,8 @@ int main()
 //    Player players[4] = {testPlayer, secondPlayer, thirdPlayer,fourPlayer};
     Player players[2] = {testPlayer, secondPlayer};
 
-    Player *currentPlayer = &testPlayer;
+    Player *currentPlayer = &players[0];
+
 
     //TODO: Si vous changger le nomrbre de joueur tot
 
