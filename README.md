@@ -3,7 +3,7 @@
 - [Instructions pour démarrer](#instructions-pour-demarrer)
 - [Informations du jeu](#informations-du-jeu)
   - [Touches](#touches)
-  - [Décors](#decors)
+  - [Motifs](#motifs)
 - [Contributeurs groupe 1](#contributeurs-groupe-1)
 
 <a id="instructions-pour-demarrer"></a>
@@ -18,7 +18,7 @@
   ./BomberMan
   ```
 <br /><br />
-Une fois que le programme démarré, le jeu se déroule dans la console.
+Une fois que le programme a démarré, le jeu se déroule dans la console.
 
 ## Informations du jeu
 ### Touches
@@ -29,13 +29,13 @@ Une fois que le programme démarré, le jeu se déroule dans la console.
   - `D` : aller à droite
 - Actions :
   - `E` : poser une bombe
+  - `A` : passer son tour
 
-<a id="decors"></a>
-### Décors
-- Motifs :
+### Motifs
+- Décor :
   - ⬜️ : mur incassable
   - 🟫 : mur fragile
-  - 💥 : explosion de mur
+  - 💥 : explosion de mur ne contenant aucun objet
   - ⬛️ : espace vide
   - 🔥 : déflagration de bombe
 - Joueurs :
@@ -43,6 +43,7 @@ Une fois que le programme démarré, le jeu se déroule dans la console.
   - 😛 : joueur 2
   - 🙁 : joueur 3
   - 😮 : joueur 4
+  - 💀 : joueur mort durant un tour
 - Objets :
   - 💣 : bombe
   - 🔽 : ajoute une bombe au joueur
@@ -51,7 +52,7 @@ Une fois que le programme démarré, le jeu se déroule dans la console.
   - 🔵 : diminue d'une portée aux bombes du joueur
   - 🔴 : ajout maximal de la portée des bombes du joueur (objet rare)
   - 🏃 : permet de traverser les bombes (remplace 👟)
-  - 👟 : permet d'envoyer une bombe contre un mur au loin (remplace 🏃)
+  - 👟 : permet d'envoyer une bombe au loin (remplace 🏃)
   - 🦺 : invincibilité (2 tours ou 10 secondes pour le temps réel)
   - 💖 : survivre à une explosion (objet utilisable qu'une fois durant la partie)
   - 🆙 : ajoute un point de vie au joueur
