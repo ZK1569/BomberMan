@@ -10,9 +10,13 @@ char **createMap(int x, int y);
 
 Map newMap(int x, int y);
 
+char *whatMap(int number);
+
 Map openMap(char *path);
 
 void createBorderMap(Map map);
+
+void showAllMaps(Config *config);
 
 
 #endif //BOMBERMAN_MAP_H

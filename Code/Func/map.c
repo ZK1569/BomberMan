@@ -9,6 +9,20 @@
 
 #include "../Header/Structure.h"
 #include "../Header/utils.h"
+#include "../Header/show.h"
+
+char *whatMap(int number){
+    switch (number) {
+        case 0:
+            return "../Code/Maps/test.txt";
+        case 1:
+            return "../Code/Maps/map1.txt";
+        case 2:
+            return "../Code/Maps/map2.txt";
+        case 3:
+            return "../Code/Maps/map3.txt";
+    }
+}
 
 char **createMap(int x, int y){
     char **map = malloc(sizeof(char*)*y);
@@ -94,5 +108,79 @@ void createBorderMap(Map map){
     }
 }
 
+void showAllMaps(Config *config){
+    // La fonction qui affiche touts les maps dans le menu au debut d'une game
+    char ligneMap1[50] = {0};
+    char ligneMap2[50] = {0};
+    char ligneMap3[50] = {0};
+
+    int sizeMap1 = getSizeYFile("../Code/Maps/map1.txt");
+    int sizeMap2 = getSizeYFile("../Code/Maps/map2.txt");
+    int sizeMap3 = getSizeYFile("../Code/Maps/map3.txt");
+    int sizeMap = 0;
+
+    if (sizeMap1 > sizeMap){
+        sizeMap = sizeMap1;
+    }else if (sizeMap2 > sizeMap){
+        sizeMap = sizeMap2;
+    }else if (sizeMap3 > sizeMap){
+        sizeMap = sizeMap3;
+    }
+
+    FILE *map1 = fopen("../Code/Maps/map1.txt", "r");
+    FILE *map2 = fopen("../Code/Maps/map2.txt", "r");
+    FILE *map3 = fopen("../Code/Maps/map3.txt", "r");
+
+    // Print les maps ligne par ligne
+    for (int i = 0; i < sizeMap; ++i) {
+        if (i < sizeMap1){
+            fscanf(map1, "%s", ligneMap1);
+            showLine(ligneMap1, strlen(ligneMap1), 1, config);
+            printf("  |  ");
+        }
+        if (i < sizeMap2){
+            fscanf(map2, "%s", ligneMap2);
+            showLine(ligneMap2, strlen(ligneMap2), 1, config);
+            printf("  |  ");
+        }
+        if (i < sizeMap3){
+            fscanf(map3, "%s", ligneMap3);
+            showLine(ligneMap3, strlen(ligneMap3), 1, config);
+            printf("  |  ");
+        }
+        printf("\n");
+    }
+
+    // Print la dernierre ligne avec les informations
+    for (int i = 0; i < strlen(ligneMap1)/2-1; ++i) {
+        printf("%s ", config->emptySpace);
+    }
+    printf("[1] ");
+    for (int i = 0; i < strlen(ligneMap1)/2; ++i) {
+        printf("%s ", config->emptySpace);
+    }
+    printf(" |  ");
+    for (int i = 0; i < strlen(ligneMap2)/2; ++i) {
+        printf("%s ", config->emptySpace);
+    }
+    printf("[2] ");
+    for (int i = 0; i < strlen(ligneMap2)/2; ++i) {
+        printf("%s ", config->emptySpace);
+    }
+    printf(" |  ");
+    for (int i = 0; i < strlen(ligneMap3)/2; ++i) {
+        printf("%s ", config->emptySpace);
+    }
+    printf("[3] ");
+    for (int i = 0; i < strlen(ligneMap3)/2; ++i) {
+        printf("%s ", config->emptySpace);
+    }
+    printf(" |\n");
+
+
+    fclose(map1);
+    fclose(map2);
+    fclose(map3);
+}
 
 

@@ -7,85 +7,90 @@
 
 #include "../Header/show.h"
 #include "../Header/map.h"
+#include "../Header/utils.h"
 
 // ░▒▓█
 
 void show(Map map, short type, Config *config){
     // Print test: Show map
     for (int i = 0; i < map.y; i++) {
-        for (int y = 0; y < map.x; y++) {
-            if (!type){
-                printf("%c ", map.map[i][y]);
-            }else{
-                switch (map.map[i][y]) {
-                  case 'X':
+        showLine(map.map[i], map.x, type, config);
+        printf("\n");
+    }
+}
+
+void showLine(char *line, int sizeString, short type, Config *config){
+    for (int y = 0; y < sizeString; y++) {
+        if (!type){
+            printf("%c ", line[y]);
+        }else{
+            switch (line[y]) {
+                case 'X':
                     printf("%s ", config->strongWall);
                     break;
-                  case 'm':
+                case 'm':
                     printf("%s ", config->weakWall);
                     break;
-                  case '#':
+                case '#':
                     printf("%s ", config->destroyedWall);
                     break;
-                  case '0':
+                case '0':
                     printf("%s ", config->emptySpace);
                     break;
-                  case 1:
+                case 1:
                     printf("%s ", config->player1);
                     break;
-                  case 2:
+                case 2:
                     printf("%s ", config->player2);
                     break;
-                  case 3:
+                case 3:
                     printf("%s ", config->player3);
                     break;
-                  case 4:
+                case 4:
                     printf("%s ", config->player4);
                     break;
-                  case 'D':
+                case 'D':
                     printf("%s ", config->playerDead);
                     break;
-                  case 'q':
+                case 'q':
                     printf("%s ", config->bomb);
                     break;
-                  case '*':
+                case '*':
                     printf("%s ", config->bombFire);
                     break;
-                  case 'd':
+                case 'd':
                     printf("%s ", config->bombDown);
                     break;
-                  case 'u':
+                case 'u':
                     printf("%s ", config->bombUp);
                     break;
-                  case 'y':
+                case 'y':
                     printf("%s ", config->yellowFire);
                     break;
-                  case 'b':
+                case 'b':
                     printf("%s ", config->blueFire);
                     break;
-                  case 'r':
+                case 'r':
                     printf("%s ", config->redFire);
                     break;
-                  case 'p':
+                case 'p':
                     printf("%s ", config->bombPass);
                     break;
-                  case 'k':
+                case 'k':
                     printf("%s ", config->kick);
                     break;
-                  case 'v':
+                case 'v':
                     printf("%s ", config->vest);
                     break;
-                  case 'h':
+                case 'h':
                     printf("%s ", config->heart);
                     break;
-                  case 'o':
+                case 'o':
                     printf("%s ", config->oneUp);
                     break;
-                  default:
+                default:
                     printf("%s ", config->emptySpace);
-                }
             }
         }
-        printf("\n");
     }
 }
