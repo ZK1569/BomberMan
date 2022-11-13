@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include "Header/Structure.h"
 #include "Header/config.h"
@@ -62,6 +63,8 @@ int main()
     }
     printf("Map = %d, %d\n", map.x, map.y);
 
+
+    srand(NULL);
 
     /*
      *   Initialize three players
