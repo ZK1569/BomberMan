@@ -24,12 +24,13 @@ void whoseBomb(int x, int y, Player *allPlayers, int nbrPlayers) {
   }
 }
 
-char whatToPut(int x, int y, Map *map, Player *allPlayers, int nbrPlayers, Player *player) {
-  if (map == NULL) {
-    player->alive = 0;
-    return 'D';
-  }
+void applyBombExplosionEffectOn(Player *player) {
+  player->isOnBomb = 0;
+  if (!(player->hasVestItem)) player->heartLife--;
+  if (player->heartLife < 0) player->healthPoint--;
+}
 
+char whatToPut(int x, int y, Map *map, Player *allPlayers, int nbrPlayers, Player *player) {
   switch (map->map[y][x]) {
     case 'm':
       return (rand() % (100 + 1)) < 50 ? '#' : popItem();
@@ -41,44 +42,78 @@ char whatToPut(int x, int y, Map *map, Player *allPlayers, int nbrPlayers, Playe
               player); //TODO: attention la taille des bombes n'est pas changer ici
       break;
     case 1:
+      applyBombExplosionEffectOn(player);
+
       if (player->hasVestItem && player->vestLife >= 0) {
-        printf("%s a un 🦺 gilet protégeant des bombes.\n", player->name);
+        printf("%s a un gilet protégeant des bombes.\n", player->name);
         return 1;
       }
-//      printf("// %d \n", player->x);
+      if (player->hasHeartItem && player->heartLife >= 0) {
+        printf("%s a perdu son super cœur !\n", player->name);
+        return 1;
+      }
+      if (player->healthPoint >= 1) {
+        printf("%s a eu mal !\n", player->name);
+        return 1;
+      }
 
       killPlayer(x, y, allPlayers);
       return 'D';
     case 2:
+      applyBombExplosionEffectOn(player);
+
       if (player->hasVestItem && player->vestLife >= 0) {
-        printf("🦺 %s a un gilet protégeant des bombes.\n", player->name);
+        printf("%s a un gilet protégeant des bombes.\n", player->name);
+        return 2;
+      }
+      if (player->hasHeartItem && player->heartLife >= 0) {
+        printf("%s a perdu son super cœur !\n", player->name);
+        return 2;
+      }
+      if (player->healthPoint >= 0) {
+        printf("%s a eu mal !\n", player->name);
         return 2;
       }
 
       killPlayer(x, y, allPlayers);
       return 'D';
     case 3:
+      applyBombExplosionEffectOn(player);
+
       if (player->hasVestItem && player->vestLife >= 0) {
-        printf("🦺 %s a un gilet protégeant des bombes.\n", player->name);
+        printf("%s a un gilet protégeant des bombes.\n", player->name);
+        return 3;
+      }
+      if (player->hasHeartItem && player->heartLife >= 0) {
+        printf("%s a perdu son super cœur !\n", player->name);
+        return 3;
+      }
+      if (player->healthPoint >= 0) {
+        printf("%s a eu mal !\n", player->name);
         return 3;
       }
 
       killPlayer(x, y, allPlayers);
       return 'D';
     case 4:
+      applyBombExplosionEffectOn(player);
+
       if (player->hasVestItem && player->vestLife >= 0) {
         printf("%s a un gilet protégeant des bombes.\n", player->name);
         return 4;
       }
-//          if (player->vestLife > 0) {
-//            player->vestLife--;
-//            return player->show;
-//          }
+      if (player->hasHeartItem && player->heartLife >= 0) {
+        printf("%s a perdu son super cœur !\n", player->name);
+        return 4;
+      }
+      if (player->healthPoint >= 0) {
+        printf("%s a eu mal !\n", player->name);
+        return 4;
+      }
 
       killPlayer(x, y, allPlayers);
       return 'D';
     default:
-      printf("Cas non géré.");
       break;
   }
 }
@@ -88,7 +123,7 @@ void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers, int n
 //    caseExploded(x,y,sizeExposion);
   // Fait exploser le centre
   if (map->map[y][x] == 1 || map->map[y][x] == 2 || map->map[y][x] == 3 || map->map[y][x] == 4) {
-    map->map[y][x] = whatToPut(-1, -1, NULL, NULL, nbrPlayers, player);
+    map->map[y][x] = whatToPut(x, y, map, allPlayers, nbrPlayers, player);
   } else {
     map->map[y][x] = '*';
   }
