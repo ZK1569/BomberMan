@@ -12,6 +12,7 @@
 // ░▒▓█
 
 void show(Map map, short type, Config *config){
+    printf("\n");
     // Print test: Show map
     for (int i = 0; i < map.y; i++) {
         showLine(map.map[i], map.x, type, config);

@@ -54,6 +54,8 @@ Player newPlayer(char *name, int x, int y, char show, Map *map)
 
   new.hasBombPassItem = 0;
   new.hasKickItem = 0;
+  new.hasVestItem = 0;
+  new.vestLife = 0;
   new.isOnBomb = 0;
   new.alive = 1;
 
@@ -92,9 +94,10 @@ void applyItemOnPlayer(char item, Player *player, Config *config) {
       player->hasKickItem = 1;
       player->hasBombPassItem = 0;
       break;
-//    case 'h':
-//
-//      break;
+    case 'v': // 🦺
+      player->hasVestItem = 1;
+      player->vestLife += 2;
+      break;
 //    case 'h':
 //
 //      break;
@@ -373,6 +376,12 @@ int move(char direction, Player *player, Map *map, Player *allPlayers, Config *c
   }
 
   map->map[player->y][player->x] = player->show;
+
+  if (player->vestLife < 0) {
+    player->hasVestItem = 0;
+  } else {
+    player->vestLife--;
+  }
 
   if (player->nbrBomb >= 1) { // If the player has at less a bomb
     for (int i = 0; i < 3; ++i) { //3 = nbr bomb (a mettre dans une variable)
