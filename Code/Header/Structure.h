@@ -65,7 +65,9 @@ typedef struct
     int hasKickItem;
     int hasVestItem;
     int vestLife;
-    int heartItemCounter;
+    int hasHeartItem;
+    int heartLife;
+    int healthPoint;
     int isOnBomb;
     int alive;
 } Player;

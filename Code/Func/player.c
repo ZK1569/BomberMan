@@ -56,6 +56,9 @@ Player newPlayer(char *name, int x, int y, char show, Map *map)
   new.hasKickItem = 0;
   new.hasVestItem = 0;
   new.vestLife = 0;
+  new.hasHeartItem = 0;
+  new.heartLife = 0;
+  new.healthPoint = 1;
   new.isOnBomb = 0;
   new.alive = 1;
 
@@ -98,12 +101,15 @@ void applyItemOnPlayer(char item, Player *player, Config *config) {
       player->hasVestItem = 1;
       player->vestLife += 2;
       break;
-//    case 'h':
-//
-//      break;
-//    case 'h':
-//
-//      break;
+    case 'h':
+      if (player->hasHeartItem >= 1) break;
+
+      player->hasHeartItem = 1;
+      player->heartLife = 1;
+      break;
+    case 'o':
+      player->healthPoint += 1;
+      break;
     default:
       printf("Un objet n'est pas géré...\n");
       break;
@@ -357,7 +363,7 @@ int move(char direction, Player *player, Map *map, Player *allPlayers, Config *c
 //            if(player->nbrBomb < 3){ // 3 est le nombre de bombe ( a mettre dans un variable )
       for (int i = 0; i < 3; ++i) {
         if (player->myBomb[i].x == 0 || player->myBomb[i].y == 0) {
-          printf("Une 💣 bombe a été posée.\n");
+          printf("Une bombe a été posée.\n");
           player->myBomb[i].x = player->x;
           player->myBomb[i].y = player->y;
           player->myBomb[i].life = 5; //5 a mettre dans une variable = nbr de tour avant quel explose
