@@ -63,7 +63,8 @@ typedef struct
     Bomb *myBomb;
     int hasBombPassItem;
     int hasKickItem;
-    int vestItemCounter;
+    int hasVestItem;
+    int vestLife;
     int heartItemCounter;
     int isOnBomb;
     int alive;
