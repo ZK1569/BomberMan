@@ -23,13 +23,13 @@ Une fois que le programme a démarré, le jeu se déroule dans la console.
 ## Informations du jeu
 ### Touches
 - Déplacements :
-  - `Z` : aller en haut
-  - `Q` : aller à gauche
-  - `S` : aller en bas
-  - `D` : aller à droite
+  - `E` : aller en haut
+  - `S` : aller à gauche
+  - `D` : aller en bas
+  - `F` : aller à droite
 - Actions :
-  - `E` : poser une bombe
-  - `A` : passer son tour
+  - `P` : poser une bombe
+  - `ESPACE` : passer son tour
 
 ### Motifs
 - Décor :
