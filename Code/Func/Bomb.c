@@ -32,15 +32,16 @@ void applyBombExplosionEffectOn(Player *player) {
 
 char whatToPut(int x, int y, Map *map, Player *allPlayers, int nbrPlayers, Player *player) {
   switch (map->map[y][x]) {
+    case '*':
+      return '*';
     case 'm':
       return (rand() % (100 + 1)) < 50 ? '#' : popItem();
     case '0':
       return '*';
     case 'q':
       whoseBomb(x, y, allPlayers, nbrPlayers);
-      explose(x, y, 2, map, allPlayers, nbrPlayers,
-              player); //TODO: attention la taille des bombes n'est pas changer ici
-      break;
+      explose(x, y, 2, map, allPlayers, nbrPlayers, player); //TODO: attention la taille des bombes n'est pas changer ici
+      return '*';
     case 1:
       applyBombExplosionEffectOn(player);
 
@@ -114,7 +115,8 @@ char whatToPut(int x, int y, Map *map, Player *allPlayers, int nbrPlayers, Playe
       killPlayer(x, y, allPlayers);
       return 'D';
     default:
-      break;
+//      printf("whatToPut default \n");
+      return '0';
   }
 }
 
@@ -138,7 +140,7 @@ void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers, int n
 
     if (map->map[next][x] == 'X') {
       break;
-    } else if (map->map[next][x] == 'm') {
+    } else if (map->map[next][x] == 'm' || map->map[next][x] == 'q') {
       map->map[next][x] = whatToPut(x, next, map, allPlayers, nbrPlayers, player);
       break;
     } else {
@@ -154,7 +156,7 @@ void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers, int n
 
     if (map->map[next][x] == 'X') {
       break;
-    } else if (map->map[next][x] == 'm') {
+    } else if (map->map[next][x] == 'm' || map->map[next][x] == 'q') {
       map->map[next][x] = whatToPut(x, next, map, allPlayers, nbrPlayers, player);
       break;
     } else {
@@ -170,7 +172,7 @@ void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers, int n
 
     if (map->map[y][next] == 'X') {
       break;
-    } else if (map->map[y][next] == 'm') {
+    } else if (map->map[y][next] == 'm' || map->map[next][x] == 'q') {
       map->map[y][next] = whatToPut(next, y, map, allPlayers, nbrPlayers, player);
       break;
     } else {
@@ -187,7 +189,7 @@ void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers, int n
 
     if (map->map[y][next] == 'X') {
       break;
-    } else if (map->map[y][next] == 'm') {
+    } else if (map->map[y][next] == 'm' || map->map[next][x] == 'q') {
       map->map[y][next] = whatToPut(next, y, map, allPlayers, nbrPlayers, player);
       break;
     } else {
