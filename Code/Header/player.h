@@ -8,15 +8,15 @@
 #include "Structure.h"
 
 typedef enum {
-    MOVE_UP = 'z',
-    MOVE_LEFT = 'q',
-    MOVE_DOWN = 's',
-    MOVE_RIGHT = 'd',
-    MOVE_NO = 'a',
+    MOVE_UP = 'e',
+    MOVE_LEFT = 's',
+    MOVE_DOWN = 'd',
+    MOVE_RIGHT = 'f',
+    MOVE_NO = ' ',
 } Movement;
 
 typedef enum {
-    ACTION_PLACE_BOMB = 'e',
+    ACTION_PLACE_BOMB = 'p',
 } Action;
 
 Player newPlayer(char *name, int x, int y, char show, Map *map);
