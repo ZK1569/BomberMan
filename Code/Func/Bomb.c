@@ -32,6 +32,8 @@ void applyBombExplosionEffectOn(Player *player) {
 
 char whatToPut(int x, int y, Map *map, Player *allPlayers, int nbrPlayers, Player *player) {
   switch (map->map[y][x]) {
+    case '#':
+      return '#';
     case '*':
       return '*';
     case 'm':
@@ -172,7 +174,7 @@ void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers, int n
 
     if (map->map[y][next] == 'X') {
       break;
-    } else if (map->map[y][next] == 'm' || map->map[next][x] == 'q') {
+    } else if (map->map[y][next] == 'm' || map->map[y][next] == 'q') {
       map->map[y][next] = whatToPut(next, y, map, allPlayers, nbrPlayers, player);
       break;
     } else {
@@ -189,7 +191,7 @@ void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers, int n
 
     if (map->map[y][next] == 'X') {
       break;
-    } else if (map->map[y][next] == 'm' || map->map[next][x] == 'q') {
+    } else if (map->map[y][next] == 'm' || map->map[y][next] == 'q') {
       map->map[y][next] = whatToPut(next, y, map, allPlayers, nbrPlayers, player);
       break;
     } else {
