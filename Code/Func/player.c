@@ -111,7 +111,7 @@ void applyItemOnPlayer(char item, Player *player, Config *config) {
       player->healthPoint += 1;
       break;
     default:
-      printf("Un objet n'est pas géré...\n");
+//      printf("Un objet n'est pas géré...\n");
       break;
   }
 }
