@@ -42,7 +42,9 @@ Player newPlayer(char *name, int x, int y, char show, Map *map)
     new.show = show;
     new.back = '0';
     new.nbrBomb = 0;
-    new.myBomb = malloc(sizeof(Bomb) * 3); // Tout les joueurs commencent avec 3 Bomb
+    int bombQuantity = 3;
+    new.bombCounter = bombQuantity;
+    new.myBomb = malloc(sizeof(Bomb) * bombQuantity); // Tout les joueurs commencent avec 3 Bomb
     for (int i = 0; i < 3; ++i)
     {
         new.myBomb[i].x = 0;
@@ -354,6 +356,10 @@ int move(char direction, Player *player, Map *map, Player *allPlayers, Config *c
       break;
 
     case ACTION_PLACE_BOMB:
+      if (player->bombCounter <= 0) {
+        printf("Plus aucune bombe en poche...\n");
+        return 2;
+      }
       if (player->isOnBomb) {
         printf("Il y a déjà une bombe...\n");
         return 2;
@@ -371,6 +377,8 @@ int move(char direction, Player *player, Map *map, Player *allPlayers, Config *c
           break;
         }
       }
+
+      if (player->bombCounter >= 1) player->bombCounter--;
       player->back = MOVE_LEFT;
 //            }
       break;

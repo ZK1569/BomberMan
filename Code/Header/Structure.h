@@ -60,6 +60,7 @@ typedef struct
     char back;
     char name[20];
     int nbrBomb;
+    int bombCounter;
     Bomb *myBomb;
     int hasBombPassItem;
     int hasKickItem;
