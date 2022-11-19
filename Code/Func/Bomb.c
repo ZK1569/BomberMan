@@ -42,7 +42,7 @@ char whatToPut(int x, int y, Map *map, Player *allPlayers, int nbrPlayers, Playe
       return '*';
     case 'q':
       whoseBomb(x, y, allPlayers, nbrPlayers);
-      explose(x, y, 2, map, allPlayers, nbrPlayers, player); //TODO: attention la taille des bombes n'est pas changer ici
+      explose(x, y, player->myBomb->range, map, allPlayers, nbrPlayers, player); //TODO: attention la taille des bombes n'est pas changer ici
       return '*';
     case 1:
       applyBombExplosionEffectOn(player);
@@ -123,12 +123,12 @@ char whatToPut(int x, int y, Map *map, Player *allPlayers, int nbrPlayers, Playe
 }
 
 void explose(int x, int y, int sizeExposion, Map *map, Player *allPlayers, int nbrPlayers, Player *player) {
-
-//    caseExploded(x,y,sizeExposion);
+  //    caseExploded(x,y,sizeExposion);
   // Fait exploser le centre
   if (map->map[y][x] == 1 || map->map[y][x] == 2 || map->map[y][x] == 3 || map->map[y][x] == 4) {
     map->map[y][x] = whatToPut(x, y, map, allPlayers, nbrPlayers, player);
-  } else {
+  }
+  else {
     map->map[y][x] = '*';
   }
 
