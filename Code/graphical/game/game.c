@@ -68,7 +68,7 @@ void init_game(Game *game)
 void load_texture(Game *game, const char *filename)
 {
     char *fullpath = realpath(filename, NULL);
-    SDL_Surface *surface = IMG_Load("/Users/abdoulayedia/Projects/Dev/C/bomberman/src/assets/NES_BOMBERMAN.png");
+    SDL_Surface *surface = IMG_Load("../Code/graphical/assets/NES_BOMBERMAN.png");
     if (!surface)
     {
         fprintf(stderr, "Error loading image.\n");

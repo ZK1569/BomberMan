@@ -10,7 +10,7 @@ void init_map(GameMap *map)
 void load_map(GameMap *map, const char *filename)
 {
     char *fullpath = realpath(filename, NULL);
-    FILE *file = fopen("/Users/abdoulayedia/Projects/Dev/C/bomberman/src/levels/level_01.txt", "r");
+    FILE *file = fopen("../Code/graphical/levels/level_01.txt", "r");
     if (!file)
     {
         fprintf(stderr, "Error opening file.\n");
