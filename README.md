@@ -18,16 +18,16 @@ Lien du [dépôt](https://github.com/ZK1569/BomberMan) GitHub : https://github.c
       brew install sdl2_image
       ```
 - Si vous utilisez un éditeur tel que CLion, il suffit de lancer le programme à partir du bouton "Lancer" / "Run" ou à partir du menu correspondant.
-- Sinon à partir de la racine du projet, vous pouvez utiliser la ligne de commande pour construire le programme puis l'exécuter :
-  ```shell
-  mkdir build
-  cd build
-  cmake ..
-  make
-  ./BomberMan
-  ```
-<br /><br />
-Une fois que le programme a démarré, le jeu se déroule dans la console.
+  - Sinon à partir de la racine du projet, vous pouvez utiliser la ligne de commande pour construire le programme puis l'exécuter :
+    ```shell
+    mkdir build
+    cd build
+    cmake ..
+    make
+    ./BomberMan
+    ```
+<br />
+Une fois que le programme a démarré, un menu s'affiche dans la console.
 
 ## Informations du jeu
 ### Touches
@@ -43,10 +43,10 @@ Une fois que le programme a démarré, le jeu se déroule dans la console.
     - `Entrée` : valider son choix
 - Mode graphique :
   - Déplacements (joueur 1) :
-  - `↑` : aller en haut
-  - `←` : aller à gauche
-  - `↓` : aller en bas
-  - `→` : aller à droite
+    - `↑` : aller en haut
+    - `←` : aller à gauche
+    - `↓` : aller en bas
+    - `→` : aller à droite
   - Actions :
     - `E` : poser une bombe
 
