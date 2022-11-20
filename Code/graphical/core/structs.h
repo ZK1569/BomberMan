@@ -37,6 +37,7 @@ typedef struct
     int powerup_timer;
     int id;
     double invincible_timer;
+    double ai_timer;
     bool can_kick;
     bool can_teleport;
     bool can_survive;
@@ -45,6 +46,7 @@ typedef struct
     bool is_moving;
     bool is_bombing;
     bool is_powerup;
+    bool is_ai;
     Direction direction;
     Coords spawn;
     Sprite sprite;

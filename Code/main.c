@@ -36,11 +36,11 @@ int main()
 
         // ask for how many players
         int playerCount = 0;
-        printf("How many players? (1-2): ");
         do
         {
+            printf("How many players? (1-4): ");
             scanf("%d", &playerCount);
-        } while (playerCount < 1 || playerCount > 2);
+        } while (playerCount < 1 || playerCount > 4);
 
         start_game(playerCount);
     }

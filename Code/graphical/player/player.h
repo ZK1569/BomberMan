@@ -11,6 +11,7 @@ void draw_player(Game *game, GamePlayer *player);
 void draw_player_powerups(Game *game, GamePlayer *player);
 void draw_player_lives(Game *game, GamePlayer *player);
 void move_player(Game *game, GamePlayer *player, Direction direction);
+void move_ai_player(Game *game, GamePlayer *player);
 Powerup *collide_with_powerup(Game *game, int x, int y);
 GameBomb *collide_with_bomb(Game *game, int x, int y);
 bool consume_powerup(Game *game, GamePlayer *player, Powerup *powerup);

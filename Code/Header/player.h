@@ -7,7 +7,8 @@
 
 #include "Structure.h"
 
-typedef enum {
+typedef enum
+{
     MOVE_UP = 'e',
     MOVE_LEFT = 's',
     MOVE_DOWN = 'd',
@@ -15,7 +16,8 @@ typedef enum {
     MOVE_NO = ' ',
 } Movement;
 
-typedef enum {
+typedef enum
+{
     ACTION_PLACE_BOMB = 'p',
 } Action;
 

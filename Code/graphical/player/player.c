@@ -16,6 +16,7 @@ void init_player(Game *game, GamePlayer *player, int x, int y)
     player->is_moving = false;
     player->is_bombing = false;
     player->is_powerup = false;
+    player->is_ai = false;
     player->direction = DOWN;
     player->sprite.texture = NULL;
 
@@ -56,6 +57,9 @@ void add_player(Game *game)
 #ifdef DEBUG
         printf("\t- GamePlayer[%d]: %p\n", player->id, player);
 #endif
+
+        if (player->id > 2)
+            player->is_ai = true;
 
         if (x == -1)
             x = game->map.width - 2;
@@ -233,6 +237,65 @@ void move_player(Game *game, GamePlayer *player, Direction direction)
 
     int old_x = player_rect.x / (TILE_SIZE * SCALE);
     int old_y = player_rect.y / (TILE_SIZE * SCALE);
+
+    switch (direction)
+    {
+    case LEFT:
+        player_rect.x -= TILE_SIZE * SCALE;
+        break;
+    case RIGHT:
+        player_rect.x += TILE_SIZE * SCALE;
+        break;
+    case UP:
+        player_rect.y -= TILE_SIZE * SCALE;
+        break;
+    case DOWN:
+        player_rect.y += TILE_SIZE * SCALE;
+        break;
+    default:
+        break;
+    }
+
+    if (is_valid_move(game, player, &player_rect))
+    {
+
+        int x = player_rect.x / (TILE_SIZE * SCALE);
+        int y = player_rect.y / (TILE_SIZE * SCALE);
+
+        if (teleport_player(game, player, x, y))
+            return;
+
+        Powerup *powerup_in_the_way = collide_with_powerup(game, x, y);
+        if (powerup_in_the_way != NULL)
+        {
+            consume_powerup(game, player, powerup_in_the_way);
+        }
+
+        GameBomb *bomb_in_the_way = collide_with_bomb(game, x, y);
+        if (bomb_in_the_way != NULL)
+        {
+            kick_bomb(game, bomb_in_the_way, direction);
+        }
+
+        player->direction = direction;
+        player->sprite.dst_rect = player_rect;
+
+        game->map.data[old_y][old_x] = ' ';
+        game->map.data[y][x] = get_player_tile(player);
+    }
+}
+
+void move_ai_player(Game *game, GamePlayer *player)
+{
+    if (game == NULL || player == NULL)
+        return;
+
+    SDL_Rect player_rect = player->sprite.dst_rect;
+
+    int old_x = player_rect.x / (TILE_SIZE * SCALE);
+    int old_y = player_rect.y / (TILE_SIZE * SCALE);
+
+    Direction direction = rand() % 4;
 
     switch (direction)
     {
@@ -496,6 +559,21 @@ void update_players(Game *game)
 
 void update_player(Game *game, GamePlayer *player)
 {
+    if (player->is_dead)
+        return;
+
+    if (player->is_ai)
+    {
+        player->ai_timer -= game->delta_time;
+
+        if (player->ai_timer <= 0)
+        {
+            player->ai_timer = AI_PLAYER_ACTION_DELAY;
+
+            printf("AI player %d is thinking...\n", player->id);
+            move_ai_player(game, player);
+        }
+    }
     player->invincible_timer -= game->delta_time / 1000.0;
     if (player->invincible_timer <= 0)
     {
