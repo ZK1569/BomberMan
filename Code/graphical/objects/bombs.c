@@ -428,7 +428,6 @@ bool handle_player_explosion(Game *game, GameBomb *bomb, int col, int row)
             {
                 if (player->invincible_timer > 0)
                 {
-                    player->invincible_timer = 0;
                     return true;
                 }
 
