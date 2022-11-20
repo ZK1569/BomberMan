@@ -5,10 +5,10 @@ void init_player(Game *game, GamePlayer *player, int x, int y)
     player->coords.x = x;
     player->coords.y = y;
     player->bomb_range = 2;
-    player->bomb_count = 100;
+    player->bomb_count = 3;
     player->bomb_timer = 0;
     player->speed = 1;
-    player->lives = 3;
+    player->lives = 1;
     player->score = 0;
     player->powerup = 0;
     player->powerup_timer = 0;
@@ -53,7 +53,9 @@ void add_player(Game *game)
         int y = playerInitialCoords[game->player_count - 1].y;
         player->id = game->player_count;
 
+#ifdef DEBUG
         printf("\t- GamePlayer[%d]: %p\n", player->id, player);
+#endif
 
         if (x == -1)
             x = game->map.width - 2;
@@ -268,7 +270,6 @@ void move_player(Game *game, GamePlayer *player, Direction direction)
         GameBomb *bomb_in_the_way = collide_with_bomb(game, x, y);
         if (bomb_in_the_way != NULL)
         {
-            printf("BOMB IN THE WAY\nKicking it: %d\n", player->direction);
             kick_bomb(game, bomb_in_the_way, direction);
         }
 
@@ -359,7 +360,10 @@ bool consume_powerup(Game *game, GamePlayer *player, Powerup *powerup)
     }
 
     powerup->is_active = false;
+
+#ifdef DEBUG
     printf("Collided with powerup %s\n", get_powerup_name(powerup->type));
+#endif
 
     game->map.data[powerup->sprite.dst_rect.y / (TILE_SIZE * SCALE)][powerup->sprite.dst_rect.x / (TILE_SIZE * SCALE)] = ' ';
     game->powerup_count--;
@@ -534,24 +538,16 @@ void take_damage(Game *game, GamePlayer *player, int damage)
     }
 
     player->lives -= damage;
+#ifdef DEBUG
     printf("GamePlayer %d has %d lives left\n", player->id, player->lives);
+#endif
     if (player->lives <= 0)
     {
         kill_player(game, player);
     }
     else
     {
-
-        // empty the player's position on the map
-        int row = player->sprite.dst_rect.y / (TILE_SIZE * SCALE);
-        int col = player->sprite.dst_rect.x / (TILE_SIZE * SCALE);
-        game->map.data[row][col] = ' ';
-
-        // move the player to its spawn point
-        player->sprite.dst_rect.x = player->spawn.x * TILE_SIZE * SCALE;
-        player->sprite.dst_rect.y = player->spawn.y * TILE_SIZE * SCALE;
-
-        game->map.data[player->spawn.y][player->spawn.x] = get_player_tile(player);
+        player->invincible_timer = 3.0f;
     }
 }
 
@@ -560,7 +556,9 @@ bool kill_player(Game *game, GamePlayer *player)
     if (player->is_dead)
         return false;
 
+#ifdef DEBUG
     printf("GamePlayer %d died\n", player->id);
+#endif
 
     player->is_dead = true;
     player->lives--;
@@ -569,6 +567,24 @@ bool kill_player(Game *game, GamePlayer *player)
     if (player->lives <= 0)
     {
         game->player_count--;
+        if (game->player_count == 1)
+        {
+            // empty the player position
+            int x = player->sprite.dst_rect.x / (TILE_SIZE * SCALE);
+            int y = player->sprite.dst_rect.y / (TILE_SIZE * SCALE);
+            game->map.data[y][x] = ' ';
+            game->is_running = false;
+            for (int i = 0; i < MAX_NUMBER_OF_PLAYERS; i++)
+            {
+                if (!game->players[i].is_dead)
+                {
+                    printf("GamePlayer %d won!\n", game->players[i].id);
+                    // wait for 5 seconds
+                    SDL_Delay(5000);
+                    break;
+                }
+            }
+        }
         return true;
     }
 

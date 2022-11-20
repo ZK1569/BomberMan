@@ -3,7 +3,7 @@
 
 #include "../menu/menu.h"
 
-void start_game();
+void start_game(int number_of_players);
 
 // Game functions
 void init_game(Game *game);

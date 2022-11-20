@@ -32,7 +32,18 @@ int main()
         // TODO: call the function for playing against CPU
         break;
     case START_GRAPHICAL:
-        start_game();
+    {
+
+        // ask for how many players
+        int playerCount = 0;
+        printf("How many players? (1-2): ");
+        do
+        {
+            scanf("%d", &playerCount);
+        } while (playerCount < 1 || playerCount > 2);
+
+        start_game(playerCount);
+    }
         return 0;
         break;
     case START_SERVER:

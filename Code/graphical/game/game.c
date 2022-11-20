@@ -175,13 +175,6 @@ void process_input(Game *game)
                     }
                 }
                 break;
-            case SDLK_TAB:
-                // switch between the 4 players
-                game->main_player_id = (game->main_player_id + 1) % game->player_count;
-                GamePlayer *main_player = &game->players[game->main_player_id];
-                current_player = main_player;
-                printf("Main player id: %d\n", game->main_player_id);
-                break;
             case SDLK_SPACE:
                 spawn_powerup_randomly(game);
                 break;
@@ -210,9 +203,6 @@ void update(Game *game)
         game->powerup_timer = 0;
     }
 
-    // printf("Timer: %f\n", game->timer);
-
-    // printf("DELTA TIME(ms): %f\n", game->delta_time);
     update_bombs(game);
     update_powerups(game);
     update_players(game);
@@ -251,15 +241,15 @@ void destroy_game(Game *game)
     SDL_Quit();
 }
 
-void start_game()
+void start_game(int number_of_players)
 {
     Game game;
     init_game(&game);
 
-    add_player(&game);
-    add_player(&game);
-    add_player(&game);
-    add_player(&game);
+    for (int i = 0; i < number_of_players; i++)
+    {
+        add_player(&game);
+    }
 
     // add_player(&game);
 
