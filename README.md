@@ -1,5 +1,7 @@
 # Projet casse briques (3 AL2)
 
+Lien du [dépôt](https://github.com/ZK1569/BomberMan) GitHub : https://github.com/ZK1569/BomberMan
+
 - [Instructions pour démarrer](#instructions-pour-demarrer)
 - [Informations du jeu](#informations-du-jeu)
   - [Touches](#touches)
@@ -30,6 +32,7 @@ Une fois que le programme a démarré, le jeu se déroule dans la console.
 - Actions :
   - `P` : poser une bombe
   - `ESPACE` : passer son tour
+  - `Entrée` : valider son choix
 
 ### Motifs
 - Décor :
