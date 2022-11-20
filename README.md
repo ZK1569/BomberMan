@@ -10,6 +10,13 @@ Lien du [dépôt](https://github.com/ZK1569/BomberMan) GitHub : https://github.c
 
 <a id="instructions-pour-demarrer"></a>
 ## Instructions pour démarrer
+- Au préalable sur sa machine, avoir installé `sdl2`, `sdl2_ttf` et `sdl2_image`.
+  - Sinon si vous êtes sur Mac par exemple :
+      ```
+      brew install sdl2
+      brew install sdl2_ttf
+      brew install sdl2_image
+      ```
 - Si vous utilisez un éditeur tel que CLion, il suffit de lancer le programme à partir du bouton "Lancer" / "Run" ou à partir du menu correspondant.
 - Sinon à partir de la racine du projet, vous pouvez utiliser la ligne de commande pour construire le programme puis l'exécuter :
   ```shell
