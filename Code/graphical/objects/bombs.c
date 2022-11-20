@@ -198,6 +198,7 @@ void move_bomb(Game *game, GameBomb *bomb, Direction direction)
 
             game->map.data[old_row][old_col] = ' ';
         }
+
         else
         {
             bomb->is_moving = false;
@@ -318,6 +319,8 @@ bool add_explosion(Game *game, GameBomb *bomb, Direction direction, int col, int
 
     if (game->map.data[row][col] == '.' || handle_player_explosion(game, bomb, col, row))
     {
+        if (spawn_powerup(game, col, row))
+            return true;
         handle_explosion_direction(game, bomb, direction, col, row, range);
         return true;
     }

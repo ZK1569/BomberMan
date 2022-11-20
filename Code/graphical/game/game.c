@@ -83,7 +83,9 @@ void load_texture(Game *game, const char *filename)
 void load_font(Game *game, const char *filename)
 {
     char *fullpath = realpath(filename, NULL);
+#ifdef DEBUG
     printf("fullpath: %s\n", fullpath);
+#endif // DEBUG
     game->font = TTF_OpenFont(fullpath, 16);
     if (!game->font)
     {

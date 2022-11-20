@@ -64,7 +64,10 @@ void draw_powerups(Game *game)
 
 bool spawn_powerup(Game *game, int x, int y)
 {
-    if (x < 0 || x >= game->map.width || y < 0 || y >= game->map.height || !is_tile_empty(game->map.data[y][x]))
+    if (x < 0 || x >= game->map.width || y < 0 || y >= game->map.height)
+        return false;
+
+    if (!is_tile_breakable(game->map.data[y][x]) && !is_tile_empty(game->map.data[y][x]))
         return false;
 
     PowerupType random_powerup = rand() % POWERUP_COUNT;

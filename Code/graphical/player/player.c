@@ -325,7 +325,7 @@ bool consume_powerup(Game *game, GamePlayer *player, Powerup *powerup)
         player->bomb_count++;
         break;
     case POWERUP_BOMB_DOWN:
-        player->bomb_count = max(player->bomb_count--, 1);
+        player->bomb_count = max(player->bomb_count--, 0);
         break;
     case POWERUP_RANGE_UP:
         player->bomb_range++;
@@ -349,7 +349,9 @@ bool consume_powerup(Game *game, GamePlayer *player, Powerup *powerup)
             player->can_survive = true;
         break;
     case POWERUP_INVINCIBLE:
+#ifdef DEBUG
         printf("GamePlayer %d is invincible\n", player->id);
+#endif
         player->invincible_timer = POWERUP_INVINCIBLE_DURATION;
         break;
     case POWERUP_LIFE:
